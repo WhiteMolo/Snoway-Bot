@@ -1,0 +1,47 @@
+# GitHub Actions workflow for deploying the Snoway Discord Bot to a remote server
+# This workflow is triggered on pushes to main branch or manually via workflow_dispatch
+
+name: Deploy Discord Bot
+
+on:
+  push:
+    branches: [ main ]  # Automatically deploy when changes are pushed to main branch
+  workflow_dispatch:    # Allow manual triggering of workflow from GitHub UI
+
+jobs:
+  deploy:
+    environment: production  # Specify the environment for deployment
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Get the latest code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      # Step 2: Set up SSH authentication for secure remote access
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATEKEY }}  # Private SSH key stored in GitHub secrets
+          known_hosts: '*.nodsoft.net'  # Will be populated in next step
+          
+      # Step 3: Add the server's host key to known_hosts to prevent SSH verification prompts
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+        
+      # Step 4: Copy project files to remote server, excluding unnecessary directories
+      - name: Deploy with rsync
+        run: rsync -rvmzOE --exclude='.git/' --exclude='.github/' --exclude='config/' --exclude='node_modules/' ./ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DEPLOYPATH }}
+        
+      # Step 5: Install dependencies and restart the bot process on the server
+      - name: Restart Discord Bot
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || '22' }}  # Default to port 22 if not specified
+          script: |
+            # Navigate to project directory, install dependencies, and restart/start the bot
+            cd ${{ secrets.REMOTE_DIR }}
+            npm install --production
+            pm2 restart snoway-bot || pm2 start src/index.js --name snoway-bot
