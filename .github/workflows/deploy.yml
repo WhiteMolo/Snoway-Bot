@@ -38,7 +38,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_PRIVATEKEY }}
           port: ${{ secrets.SSH_PORT || '22' }}  # Default to port 22 if not specified
           script: |
             # Navigate to project directory, install dependencies, and restart/start the bot
