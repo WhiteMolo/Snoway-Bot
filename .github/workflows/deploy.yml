@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy:
-    environment: production  # Specify the environment for deployment
+    environment: live  # Specify the environment for deployment
     runs-on: ubuntu-latest
     steps:
       # Step 1: Get the latest code from the repository
