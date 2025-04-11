@@ -32,7 +32,7 @@ module.exports = class Snoway extends Client {
     this.SnipeMsg = new Map();
     this.SnipeMention = new Map();
     this.SnipeEdit = new Map();
-    this.player = Player.singleton(this);
+    this.player = new Player(this);
     this.player.extractors.loadDefault();
 
     this.functions = require('../Functions/index')
