@@ -1,5 +1,5 @@
-module.exports = (module_nos) => {
-    const module = module_nos.toLowerCase(); 
+export default (module_nos) => {
+    const module = module_nos.toLowerCase();
 
     let forma = {
         "addbot": "Ajout de bot",
@@ -9,5 +9,5 @@ module.exports = (module_nos) => {
         "antispam": "Message contenant du spam"
     };
 
-    return forma[module]; 
-};
+    return forma[module];
+}

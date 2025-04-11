@@ -1,12 +1,12 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import {  Message } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "pstats",
     description: "Affiche le nombre de prevname",
     /**
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
+     * @param {RinBot} client 
+     * @param {Message} message
      * @param {Array} args 
      */
     run: async (client, message, args) => {
@@ -14,7 +14,7 @@ module.exports = {
         try {
             const response = await client.api.prevcount();
             const count = numm(response.count);
-            message.channel.send({ content: `\`${count}\` prevnames dans la snoway API !` })
+            message.channel.send({ content: `\`${count}\` prevnames dans la RinBot API !` })
 
         } catch (error) {
             console.error('Erreur:', error);

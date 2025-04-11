@@ -1,6 +1,6 @@
-const Snoway = require("../../structures/client");
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "clear",
     description: {
         fr: "Clear le nombre de messages dans le salon ou d'un utilisateur entre 1 et 100",
@@ -17,9 +17,9 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
-     * @param {Snoway} message 
-     * @param {Snoway} args 
+     * @param {RinBot} client 
+     * @param {RinBot} message 
+     * @param {RinBot} args 
      * @returns 
      */
     run: async (client, message, args) => {

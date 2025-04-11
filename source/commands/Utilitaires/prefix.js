@@ -1,6 +1,7 @@
-const Snoway = require("../../structures/client");
-const Discord = require('discord.js')
-module.exports = {
+import { RinBot } from "../../structures/client/index.js";
+import { Message } from "discord.js";
+
+export default {
   name: 'prefix',
   description: {
     fr:'Change le prefix du bot sur le serveur',
@@ -12,8 +13,8 @@ module.exports = {
   },
   /**
    * 
-   * @param {Snoway} client 
-   * @param {Discord.Message} message 
+   * @param {RinBot} client
+   * @param {Message} message
    * @param {string[]} args 
    * @returns 
    */

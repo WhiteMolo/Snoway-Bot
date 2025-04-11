@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import { Message } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'banner',
     usage: {
         fr: { 
@@ -16,8 +16,8 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
+     * @param {RinBot} client 
+     * @param {Message} message
      * @param {string[]} args 
      */
     run: async (client, message, args) => {

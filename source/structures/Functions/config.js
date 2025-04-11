@@ -1,6 +1,6 @@
-module.exports = {
+export default {
     private: "1188962621504888862",
-    snoway: {
+    RinBot: {
         panel: "http://167.114.48.55:30126/api",
         api: "eHNdapE343dET5GY5ktc978ABhg4w3suD5Ny4sEW4F5KLg8u84"
     },
@@ -13,4 +13,4 @@ module.exports = {
             token: "7fnSedoAHUMTnlH7nHUYtr7RhQDaAXw5"
         }
     }
-}
+};

@@ -1,16 +1,17 @@
-const Discord = require('discord.js')
-const Snoway = require('../../structures/client/index')
-module.exports = {
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: 'randomuser',
     description: {
         fr: "Tire un membre du serveur au hasard",
         en: "Shoot a server member at random"
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
-     * @param {string[]} args 
+     *
+     * @param {RinBot} client
+     * @param {Discord.Message} message
+     * @param {string[]} args
      */
     run: async (client, message, args) => {
 
@@ -21,4 +22,4 @@ module.exports = {
 
         message.channel.send({ content: `${randomMember}` });
     }
-}
+};

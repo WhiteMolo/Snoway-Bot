@@ -1,6 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
-module.exports = {
+import { Message, ButtonBuilder, ActionRowBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: 'resetbot',
     description: {
         fr: "supprime toutes les données du bot",
@@ -8,8 +9,8 @@ module.exports = {
     },
 
     /**
-     * @param {Snoway} client
-     * @param {Discord.Message} message
+     * @param {RinBot} client
+     * @param {Message} message
      * @param {Array} args
      */
     run: async (client, message, args) => {
@@ -17,18 +18,18 @@ module.exports = {
 
         try {
 
-            const buttonvalider = new Discord.ButtonBuilder()
+            const buttonvalider = new ButtonBuilder()
                 .setLabel('✅')
                 .setCustomId('resetbot_valider_' + message.id)
                 .setStyle(2)
 
-            const buttonrefuser = new Discord.ButtonBuilder()
+            const buttonrefuser = new ButtonBuilder()
                 .setLabel('❌')
                 .setCustomId('resetbot_refuser_' + message.id)
                 .setStyle(4)
 
 
-            const row = new Discord.ActionRowBuilder()
+            const row = new ActionRowBuilder()
                 .addComponents(buttonvalider, buttonrefuser)
 
             const msg = await message.channel.send({ content: await client.lang('resetbot.message'), components: [row] });

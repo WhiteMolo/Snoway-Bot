@@ -1,8 +1,8 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index')
-const ms = require('../../structures/Utils/ms')
+import Discord, { Message } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+import ms from "../../structures/Utils/ms.js";
 
-module.exports = {
+export default {
     name: "panel",
     aliases: ["antiraid", "protect", "protects"],
     description: {
@@ -10,8 +10,8 @@ module.exports = {
         en: "Configures server security"
     },
     /**
-     * @param {Snoway} client
-     * @param {Discord.Message} message
+     * @param {RinBot} client
+     * @param {Message} message
      * @param {Discord.Interaction} interaction
      */
     run: async (client, message) => {
@@ -57,7 +57,7 @@ module.exports = {
                             value: db.id,
                             emoji: client.functions.emoji.role
                         }))
-                            : [{ label: "Snoway First", value: 'snowayfirstez' }]
+                            : [{ label: "RinBot First", value: 'RinBotfirstez' }]
                         )
 
 
@@ -121,7 +121,7 @@ module.exports = {
                             value: db.id,
                             emoji: client.functions.emoji.channel
                         }))
-                            : [{ label: "Snoway First", value: 'snowayfirstez' }]
+                            : [{ label: "RinBot First", value: 'RinBotfirstez' }]
                         )
 
 
@@ -186,7 +186,7 @@ module.exports = {
                             value: db.id,
                             emoji: client.functions.emoji.user
                         }))
-                            : [{ label: "Snoway First", value: 'snowayfirstez' }]
+                            : [{ label: "RinBot First", value: 'RinBotfirstez' }]
                         )
 
 
@@ -407,7 +407,7 @@ module.exports = {
                             .setLabel('Message')
                             .setEmoji(client.functions.emoji.message)
                     );
-                    
+
                 }
             }
 
@@ -716,7 +716,7 @@ module.exports = {
                          await client.db.set(`antiraid_${message.guildId}`, db)
                     }
 
-                    
+
                     panel(dbmodule);
                     action = false;
                     response.first().delete().catch(() => { });
@@ -732,18 +732,18 @@ module.exports = {
                 const embed = new Discord.EmbedBuilder()
                     .setColor(client.color)
                     .setDescription("***Envoie-moi le nombre de \`message maximal\` de l'action, \`cancel\` pour annuler***");
-            
+
                 const msg_demande = await i.channel.send({
                     content: null,
                     embeds: [embed],
                 });
-            
+
                 const filter = (response) => response.author.id === i.user.id && !isNaN(parseInt(response.content));
                 const response = await i.channel.awaitMessages({ filter, max: 1, time: 15000, errors: ['time'] });
-            
+
                 if (response && response.first()) {
                     const input = parseInt(response.first().content.trim());
-            
+
                     if (isNaN(input)) {
                         action = false;
                         response.first().delete().catch(() => {});
@@ -752,7 +752,7 @@ module.exports = {
                             embeds: [new Discord.EmbedBuilder().setColor(client.color).setDescription(`Vous n'avez pas indiqué un nombre.`)],
                             flags: 64
                         });
-            
+
                         setTimeout(() => {
                             responseReply.delete().catch(() => {});
                         }, ms("10s"));
@@ -761,14 +761,14 @@ module.exports = {
                         db[dbmodule].messages = input;
                         await client.db.set(`antiraid_${message.guildId}`, db);
                     }
-            
+
                     panel(dbmodule);
                     action = false;
                     response.first().delete().catch(() => {});
                     msg_demande.delete().catch(() => {});
                 }
             }
-            
+
             if (i.customId.startsWith("button_power_")) {
                 const db = await dbGet()
                 const dbmodule = i.customId.split('_')[2];
@@ -902,7 +902,7 @@ module.exports = {
             }
         }
     }
-}
+};
 
 
 function convertTime(milliseconds) {

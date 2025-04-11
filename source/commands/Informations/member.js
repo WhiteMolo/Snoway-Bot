@@ -1,6 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
-module.exports = {
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: 'member',
     description: {
         fr: "Affiche les statistiques des channels vocal et des messages d'un membre mentionné ou de vous-même",
@@ -12,7 +13,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message 
      * @param {string[]} args 
      */

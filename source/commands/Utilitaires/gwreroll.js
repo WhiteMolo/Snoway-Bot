@@ -1,6 +1,7 @@
-const Discord = require('discord.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'giveawayreroll',
     aliases: ["reroll"],
     description: {
@@ -12,11 +13,11 @@ module.exports = {
         en: { "reroll <code>": "Allows to choose new winners for a ended giveaway using its code" }
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
-     * @param {string[]} args 
-     * @returns 
+     *
+     * @param {RinBot} client
+     * @param {Discord.Message} message
+     * @param {string[]} args
+     * @returns
      */
     run: async (client, message, args) => {
         if (!args[0]) {

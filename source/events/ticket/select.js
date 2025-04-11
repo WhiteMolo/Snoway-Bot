@@ -1,12 +1,11 @@
-const { ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
-const Discord = require('discord.js');
+import Discord, { ActionRowBuilder, StringSelectMenuBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "interactionCreate",
     /**
-     * @param {Snoway} client
-     * @param {Snoway} interaction
+     * @param {RinBot} client
+     * @param {Discord.Interaction} interaction
      */
     run: async (client, interaction) => {
         try {
@@ -18,10 +17,10 @@ module.exports = {
                 await interaction.deferReply({ ephemeral: true })
                 const id = interaction.values[0].split('_')[1];
                 const db = await client?.db.get(`ticket_${interaction.guild.id}`);
-                if (!db) return interaction.editReply({content: "Impossible de récupère les données !"});
+                if (!db) return interaction.editReply({ content: "Impossible de récupère les données !" });
 
                 const option = db.option.find(option => option.value === id);
-                if (!option) return interaction.editReply({content: "Impossible de récupère les données !"});
+                if (!option) return interaction.editReply({ content: "Impossible de récupère les données !" });
 
                 const options = [];
 
@@ -47,7 +46,7 @@ module.exports = {
                         );
                     await ticketmessage.edit({ components: [row] });
                 }
-                
+
                 const tickeruser = await client.db.get(`ticket_user_${interaction.guild.id}`) || [];
 
                 const resul = tickeruser.find(ticket => ticket.author === interaction.user.id);
@@ -55,13 +54,13 @@ module.exports = {
                     return await interaction.editReply({ content: await client.lang('ticket.event.maxticket') });
                 }
 
-                
+
                 if (interaction.member.roles.cache.some(role => db.rolerequis.includes(role.id))) {
                     return await interaction.editReply({ content: await client.lang('ticket.event.norequisrole') });
                 }
 
                 if (interaction.member.roles.cache.some(role => db.roleinterdit.includes(role.id))) {
-                    return await interaction.editReply({ content: await client.lang('ticket.event.roleinterdit')});
+                    return await interaction.editReply({ content: await client.lang('ticket.event.roleinterdit') });
                 }
 
                 let permissionOverwrites = [
@@ -89,23 +88,26 @@ module.exports = {
                 });
                 await interaction.editReply({ content: `${await client.lang('ticket.event.open')} <#${channel?.id}>` });
                 const salonlog = client.channels.cache.get(option.logs)
-                if(salonlog) { 
-                const embeds = new Discord.EmbedBuilder().setColor(color).setFooter(client.footer).setAuthor({ name: interaction.user.username + ' ' + interaction.user.id, iconURL: interaction.user.avatarURL() }).setTimestamp().setTitle(await client.lang('ticket.event.openticket') + interaction.user.username)
-                salonlog.send({
-                    embeds: [embeds],
-                })
-            }
+                if (salonlog) {
+                    const embeds = new Discord.EmbedBuilder().setColor(color).setFooter(client.footer).setAuthor({
+                        name: interaction.user.username + ' ' + interaction.user.id,
+                        iconURL: interaction.user.avatarURL()
+                    }).setTimestamp().setTitle(await client.lang('ticket.event.openticket') + interaction.user.username)
+                    salonlog.send({
+                        embeds: [embeds],
+                    })
+                }
                 const embed = new Discord.EmbedBuilder()
                     .setColor(color)
                     .setFooter(client.footer)
                     .setDescription(option.message || await client.lang('ticket.defautMessage'))
                     .setTitle(await client.lang('ticket.event.openticket') + interaction.user.username)
-                    
+
                 const idunique = code(15)
                 const mentionedRoles = option.mention ? option.mention.map(role => `<@&${role}>`).join(', ') : '';
                 if (db.buttonclose || db.claimbutton) {
                     const buttonRow = new Discord.ActionRowBuilder();
-                
+
                     if (db.buttonclose) {
                         buttonRow.addComponents(
                             new Discord.ButtonBuilder()
@@ -115,7 +117,7 @@ module.exports = {
                                 .setCustomId("close_" + idunique)
                         );
                     }
-                
+
                     if (db.claimbutton) {
                         buttonRow.addComponents(
                             new Discord.ButtonBuilder()
@@ -125,16 +127,16 @@ module.exports = {
                                 .setCustomId("claim_" + idunique)
                         );
                     }
-                
+
                     channel.send({
                         embeds: [embed],
-                        content: mentionedRoles, 
+                        content: mentionedRoles,
                         components: [buttonRow]
                     });
                 } else {
                     channel.send({
                         embeds: [embed],
-                        content: mentionedRoles, 
+                        content: mentionedRoles,
                     });
                 }
 

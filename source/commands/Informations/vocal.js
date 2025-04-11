@@ -1,7 +1,7 @@
-const { EmbedBuilder } = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import { EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
   name: 'vocal',
   aliases: ['vc'],
   description: {
@@ -10,9 +10,9 @@ module.exports = {
   },
   /**
    * 
-   * @param {Snoway} client 
+   * @param {RinBot} client
    * @param {Discord.Message} message 
-   * @param {Snoway} args 
+   * @param {RinBot} args
    */
   run: async (client, message, args) => {
     const membersGuild = await message.guild.members.fetch();

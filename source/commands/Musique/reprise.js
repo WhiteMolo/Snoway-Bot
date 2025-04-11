@@ -1,8 +1,7 @@
-const { useQueue, useMainPlayer } = require("discord-player");
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index');
-
-module.exports = {
+import { useMainPlayer, useQueue } from "discord-player";
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+export default {
     name: "reprise",
     aliases: ['resume', "reprendre"],
     description: {
@@ -11,7 +10,7 @@ module.exports = {
     },
     /**
      *
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Discord.Message} message
      * @param {string[]} args
      * @returns
@@ -33,4 +32,4 @@ module.exports = {
         queue.node.resume();
         return message.reply({ content: "La musique reprend donc, bonne écoute !" });
     }
-}
+};

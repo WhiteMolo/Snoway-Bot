@@ -1,7 +1,7 @@
-const { EmbedBuilder } = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import { EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
   name: 'ping',
   aliases: ['latency', "latence", "ms"],
   description: {
@@ -9,13 +9,13 @@ module.exports = {
     en: "Displays bot latency"
   },
   /**
-   * 
-   * @param {Snoway} client 
-   * @param {Snoway} message 
-   * @param {Snoway} args 
+   *
+   * @param {RinBot} client
+   * @param {RinBot} message
+   * @param {RinBot} args
    */
       run: async(client, message, args) => {
- 
+
     message.channel.send({content: await client.lang('ping.ping') +` **${client.ws.ping}ms**` });
   }
-}
+};

@@ -1,7 +1,7 @@
-const { resolveColor, EmbedBuilder } = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import { EmbedBuilder, resolveColor } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
   name: 'color',
   aliases: ['theme'],
   description: {
@@ -9,15 +9,15 @@ module.exports = {
     en: "Change the color of the bot's embed on the server"
   },
   /**
-   * 
-   * @param {Snoway} client 
-   * @param {*} message 
-   * @param {*} args 
-   * @returns 
+   *
+   * @param {RinBot} client
+   * @param {*} message
+   * @param {*} args
+   * @returns
    */
   run: async (client, message, args) => {
-   
-    
+
+
     if (!args[0]) return message.channel.send(`Utilisation correct \`${client.prefix}color <color>\``);
 
     const colorMap = {
@@ -69,4 +69,4 @@ module.exports = {
       return message.channel.send(`Couleur invalide...`);
     }
   }
-}
+};

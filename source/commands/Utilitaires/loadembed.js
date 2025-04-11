@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'loadembed',
     description: {
         fr: 'Charge et affiche un embed sauvegardé par son nom',
@@ -13,7 +13,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message 
      * @param {string[]} args 
      * @returns 

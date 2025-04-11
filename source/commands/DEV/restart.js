@@ -1,13 +1,14 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
-const { exec } = require('child_process');
+import { Message } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+import { exec } from "child_process";
 
-module.exports = {
+
+export default {
     name: "restart",
     description: "Redémarre le bot.",
     /**
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
+     * @param {RinBot} client
+     * @param {Message} message
      * @param {Array} args 
      */
     run: async (client, message, args) => {

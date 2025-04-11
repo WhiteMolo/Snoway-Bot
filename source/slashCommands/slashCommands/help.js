@@ -1,7 +1,8 @@
-const Discord = require('discord.js');
-const fs = require('fs');
-const Snoway = require('../../structures/client/index.js');
-module.exports = {
+import Discord, { ActionRowBuilder, ButtonBuilder, EmbedBuilder, StringSelectMenuBuilder } from "discord.js";
+import fs from "fs";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: "help",
     description:  'Affiche les commandes du bot',
     description_localizations: {
@@ -10,11 +11,10 @@ module.exports = {
     },
     type: 1,
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Interaction} interaction 
-     * @param {args[]} args 
-     * @returns 
+     *
+     * @param {RinBot} client
+     * @param {Discord.Interaction} interaction
+     * @returns
      */
     run: async (client, interaction) => {
         await interaction.deferReply();
@@ -70,7 +70,7 @@ module.exports = {
                     'Permissions': 9,
                     'Owner': 10,
                     'Buyers': 11,
-                    
+
                 };
 
                 cmddanslefichier.sort((a, b) => folderOrder.indexOf(a) - folderOrder.indexOf(b));
@@ -118,16 +118,16 @@ module.exports = {
                         return description;
                     });
 
-                    const embed = new Discord.EmbedBuilder()
+                    const embed = new EmbedBuilder()
                         .setColor(color)
                         .setTitle((fileEmojis[fichiertasoeur] || '❌') + " " + fichiertasoeur)
                         .setFooter(client.footer)
                         .setDescription(`${aide}\n` + categoryCommands.join(''));
-                    const row = new Discord.ActionRowBuilder()
+                    const row = new ActionRowBuilder()
                         .addComponents(
-                            new Discord.StringSelectMenuBuilder()
+                            new StringSelectMenuBuilder()
                                 .setCustomId('selectMenu')
-                                .setPlaceholder('Snoway')
+                                .setPlaceholder('RinBot')
                                 .addOptions(
                                     folderOrder.map(folder => ({
                                         label: folder,
@@ -137,9 +137,9 @@ module.exports = {
                                 ),
                         );
 
-                    const rows = new Discord.ActionRowBuilder()
+                    const rows = new ActionRowBuilder()
                         .addComponents(
-                            new Discord.ButtonBuilder()
+                            new ButtonBuilder()
                                 .setCustomId('page')
                                 .setDisabled(true)
                                 .setStyle(2)
@@ -188,13 +188,13 @@ module.exports = {
 
                 const helptext = await client.lang('help.help')
                 const text = helptext.replace("{prefix}", `${prefix}`)
-                const embed = new Discord.EmbedBuilder()
+                const embed = new EmbedBuilder()
                     .setColor(color)
-                    .setAuthor({ name: "Snoway V3", url: client.user.avatarURL(), iconURL: client.user.avatarURL() })
+                    .setAuthor({ name: "RinBot V3", url: client.user.avatarURL(), iconURL: client.user.avatarURL() })
                     .setDescription(`${await client.lang("help.prefix")} \`${prefix}\`\n${await client.lang("help.cmd")} \`${client.commands.size}\`\n${text}\n\n` + formattedCategories.join('\n\n'))
                     .setFooter(client.footer);
 
                 interaction.editReply({ embeds: [embed] });
             }
         }
-}
+};

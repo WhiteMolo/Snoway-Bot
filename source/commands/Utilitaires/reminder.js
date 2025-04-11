@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const ms = require('../../structures/Utils/ms'); 
+import { Client, Message } from "discord.js";
+import ms from "../../structures/Utils/ms.js";
 
-module.exports = {
+export default {
   name: 'reminder',
   description: {
     fr: 'Créer un rappel',
@@ -16,8 +16,8 @@ module.exports = {
     }
   },
   /**
-   * @param {Discord.Client} client 
-   * @param {Discord.Message} message 
+   * @param {Client} client
+   * @param {Message} message
    * @param {string[]} args 
    * @returns {void}
    */

@@ -1,7 +1,11 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+import version
+
+import version
+
+export default {
     name: 'activity',
     description: {
         fr: "Change le status du bot !",
@@ -26,14 +30,14 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message
      * 
      **/
     run: async (client, message, args) => {
         const db = await client.db.get('status') || {
             type: 3,
-            name: "Snoway V3",
+            name: "RinBot V3",
             status: 'dnd'
         };
         const activityType = args[0];
@@ -41,13 +45,13 @@ module.exports = {
         const name = args.slice(1).join(' ');
         let activity;
         if (activityType === "clear") {
-            db.name = "Snoway V" + require('../../../version'),
+            db.name = "RinBot V" + version,
                 db.type = 3
             client.user.setPresence({
                 status: presence ? presence : "dnd",
                 activities: [
                     {
-                        name: "Snoway V" + require('../../../version'),
+                        name: "RinBot V" + version,
                         type: 3,
                         url: "https://twitch.tv/oni145"
                     },

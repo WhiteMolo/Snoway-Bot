@@ -1,7 +1,7 @@
-const { EmbedBuilder } = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import { EmbedBuilder, Message } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
   name: 'avatar',
   aliases: ['pic', "pp"],
   description: {
@@ -17,9 +17,9 @@ module.exports = {
   },
   /**
    * 
-   * @param {Snoway} client 
-   * @param {Snoway} message 
-   * @param {Snoway} args 
+   * @param {RinBot} client 
+   * @param {Message} message
+   * @param {any[]} args
    */
     run: async (client, message, args) => {
       let target = null;

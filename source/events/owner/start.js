@@ -1,11 +1,12 @@
-const Snoway = require('../../structures/client/index');
-const Discord = require('discord.js')
+import { EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+
+export default {
   name: "ready",
   /**
    * 
-   * @param {Snoway} client 
+   * @param {RinBot} client 
    */
   run: async (client) => {
     const ownerbot = [
@@ -14,7 +15,7 @@ module.exports = {
     ];
 
     const time = Math.floor(Date.now() / 1000);
-    const embed = new Discord.EmbedBuilder()  
+    const embed = new EmbedBuilder()
       .setColor(client.config.color)
       .setFooter(client.footer)
       .addFields(

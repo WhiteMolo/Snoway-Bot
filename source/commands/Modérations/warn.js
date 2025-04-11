@@ -1,6 +1,6 @@
-const Snoway = require("../../structures/client");
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "warn",
     description: {
         fr: "Permet d'ajouter un avertissement à un membre du serveur",
@@ -14,9 +14,9 @@ module.exports = {
         }
     },
     /**
-     * @param {Snoway} client
-     * @param {Snoway} message
-     * @param {Snoway} args
+     * @param {RinBot} client
+     * @param {RinBot} message
+     * @param {RinBot} args
      * @returns
      */
     run: async (client, message, args) => {

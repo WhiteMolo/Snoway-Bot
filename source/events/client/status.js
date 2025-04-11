@@ -1,11 +1,10 @@
-const Discord = require("discord.js");
-const Snoway = require("../../structures/client/index");
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "ready",
     /**
      *
-     * @param {Snoway} client
+     * @param {RinBot} client
      */
     run: async (client) => {
        setInterval(async () => {
@@ -13,7 +12,7 @@ module.exports = {
             const presenceOptions = {
                 status: db?.status || 0,
                 activities: [{
-                    name: db?.name || "Snoway V" + client.version + " .gg/snoway",
+                    name: db?.name || "RinBot V" + client.version + " .gg/RinBot",
                     type: db?.type || 4,
                     url: "https://twitch.tv/oni145"
 

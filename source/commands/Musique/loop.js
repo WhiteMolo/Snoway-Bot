@@ -1,9 +1,9 @@
-const { useQueue } = require("discord-player");
-const { MessageActionRow, MessageSelectMenu, StringSelectMenuBuilder, ActionRowBuilder} = require("discord.js");
-const Snoway = require('../../structures/client/index')
-const { QueueRepeatMode } = require("discord-player");
+import { QueueRepeatMode, useQueue } from "discord-player";
+import Discord, { ActionRowBuilder, StringSelectMenuBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+
+export default {
     name: "repeat",
     aliases: ['loop'],
     description: {
@@ -11,7 +11,7 @@ module.exports = {
         en: "Repeat music/track or deactivate mode"
     },
     /**
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Message} message
      * @param {string[]} args
      */

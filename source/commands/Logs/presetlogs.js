@@ -1,7 +1,8 @@
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType, Message, EmbedBuilder } = require('discord.js');
-const Discord = require('discord.js')
-const Snoway = require('../../structures/client/index')
-module.exports = {
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType, EmbedBuilder, Message } from "discord.js";
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: 'presetlogs',
     description: {
         fr: "Automatically creates a lounge for each type of log. If a category is specified, lounges will be created in that category.",
@@ -9,7 +10,7 @@ module.exports = {
     },
     /**
      *
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Message} message
      */
     run: async (client, message) => {

@@ -1,12 +1,13 @@
-const Discord = require("discord.js");
-const Snoway = require("../../structures/client/index");
-const { ms } = require("../../structures/Utils");
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+import ms from "../../structures/Utils/ms.js";
 
-module.exports = {
+
+export default {
     name: "ready",
     /**
      *
-     * @param {Snoway} client
+     * @param {RinBot} client
      */
     run: async (client) => {
         setInterval(() => { 

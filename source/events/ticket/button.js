@@ -1,12 +1,16 @@
-const { ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
-const Discord = require('discord.js');
+import Discord, {
+    ActionRowBuilder,
+    ButtonBuilder,
+    EmbedBuilder,
+} from "discord.js";
 
-module.exports = {
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: "interactionCreate",
     /**
-     * @param {Snoway} client
-     * @param {Snoway} interaction
+     * @param {RinBot} client
+     * @param {Discord.Interaction} interaction
      */
     run: async (client, interaction) => {
         try {
@@ -39,15 +43,15 @@ module.exports = {
                 let permissionOverwrites = [
                     {
                         id: interaction.guild.roles.everyone,
-                        deny: [Discord.PermissionFlagsBits.ViewChannel],
+                        deny: [PermissionFlagsBits.ViewChannel],
                     },
                     {
                         id: interaction.user,
                         allow: [
-                            Discord.PermissionFlagsBits.SendMessages,
-                            Discord.PermissionFlagsBits.ViewChannel,
-                            Discord.PermissionFlagsBits.AttachFiles,
-                            Discord.PermissionFlagsBits.AddReactions
+                            PermissionFlagsBits.SendMessages,
+                            PermissionFlagsBits.ViewChannel,
+                            PermissionFlagsBits.AttachFiles,
+                            PermissionFlagsBits.AddReactions
                         ]
                     }
                 ];
@@ -63,12 +67,12 @@ module.exports = {
                 await interaction.editReply({ content: `${await client.lang('ticket.event.open')} <#${channel?.id}>` });
                 const salonlog = client.channels.cache.get(option.logs)
                 if(salonlog) { 
-                const embeds = new Discord.EmbedBuilder().setColor(color).setFooter(client.footer).setAuthor({ name: interaction.user.username + ' ' + interaction.user.id, iconURL: interaction.user.avatarURL() }).setTimestamp().setTitle(await client.lang('ticket.event.openticket') + interaction.user.username)
+                const embeds = new EmbedBuilder().setColor(color).setFooter(client.footer).setAuthor({ name: interaction.user.username + ' ' + interaction.user.id, iconURL: interaction.user.avatarURL() }).setTimestamp().setTitle(await client.lang('ticket.event.openticket') + interaction.user.username)
                 salonlog.send({
                     embeds: [embeds],
                 })
             }
-                const embed = new Discord.EmbedBuilder()
+                const embed = new EmbedBuilder()
                     .setColor(color)
                     .setFooter(client.footer)
                     .setDescription(option.message || await client.lang('ticket.defautMessage'))
@@ -77,11 +81,11 @@ module.exports = {
                 const idunique = code(15)
                 const mentionedRoles = option.mention ? option.mention.map(role => `<@&${role}>`).join(', ') : '';
                 if (db.buttonclose || db.claimbutton) {
-                    const buttonRow = new Discord.ActionRowBuilder();
+                    const buttonRow = new ActionRowBuilder();
                 
                     if (db.buttonclose) {
                         buttonRow.addComponents(
-                            new Discord.ButtonBuilder()
+                            new ButtonBuilder()
                                 .setLabel(await client.lang('ticket.event.buttonclose'))
                                 .setStyle(4)
                                 .setEmoji('🔒')
@@ -91,7 +95,7 @@ module.exports = {
                 
                     if (db.claimbutton) {
                         buttonRow.addComponents(
-                            new Discord.ButtonBuilder()
+                            new ButtonBuilder()
                                 .setLabel(await client.lang('ticket.event.buttonclaim'))
                                 .setStyle(2)
                                 .setEmoji('🔐')

@@ -1,8 +1,8 @@
-const Discord = require('discord.js');
-const QuickDB = require('quick.db');
-const Snoway = require('../../structures/client/index.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+import { QuickDB } from "quick.db";
 
-module.exports = {
+export default {
     name: 'saveembed',
     description: {
         fr:'Sauvegarde un message par son ID',
@@ -19,7 +19,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message 
      * @param {string[]} args 
      * @returns 

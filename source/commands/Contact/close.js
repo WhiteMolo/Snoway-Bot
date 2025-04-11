@@ -1,15 +1,16 @@
-const Snoway = require('../../structures/client/index');
-const Discord = require('discord.js');
-const discordTranscripts = require('discord-html-transcripts');
-module.exports = {
+import { RinBot } from "../../structures/client/index.js";
+import { Message, EmbedBuilder } from "discord.js";
+import discordTranscripts from "discord-html-transcripts";
+
+export default {
     name: 'close',
     description: {
         fr: "Ferme un ticket",
         en: "Close a ticket"
     },
     /**
-     * @param {Snoway} client
-     * @param {Discord.Message} message
+     * @param {RinBot} client
+     * @param {Message} message
      */
     run: async (client, message) => {
         const dbserveur = await client?.db.get(`ticket_${message.guild.id}`)
@@ -25,7 +26,7 @@ module.exports = {
         const channelticket = message.guild.channels.cache.get(message.channel.id);
         const attachment = await discordTranscripts.createTranscript(channelticket);
         if (channel) {
-            const embed = new Discord.EmbedBuilder().setColor(client.color).setFooter(client.footer).setAuthor({ name: (await user).username + ' ' + (await user).id, iconURL: (await user).avatarURL() }).setTimestamp().setTitle('Ticket Fermé par ' + message.user.username)
+            const embed = new EmbedBuilder().setColor(client.color).setFooter(client.footer).setAuthor({ name: (await user).username + ' ' + (await user).id, iconURL: (await user).avatarURL() }).setTimestamp().setTitle('Ticket Fermé par ' + message.user.username)
 
             channel.send({
                 files: [attachment],
@@ -46,13 +47,13 @@ module.exports = {
 
         if (salonlog) {
             if (dboption.transcript) {
-                const embed = new Discord.EmbedBuilder().setColor(client.color).setFooter(client.footer).setAuthor({ name: (await user).username + ' ' + (await user).id, iconURL: (await user).avatarURL() }).setTimestamp().setTitle('Ticket Fermé par ' + message.user.username)
+                const embed = new EmbedBuilder().setColor(client.color).setFooter(client.footer).setAuthor({ name: (await user).username + ' ' + (await user).id, iconURL: (await user).avatarURL() }).setTimestamp().setTitle('Ticket Fermé par ' + message.user.username)
                 salonlog.send({
                     embeds: [embed],
                     files: [attachment],
                 })
             } else {
-                const embed = new Discord.EmbedBuilder().setColor(client.color).setFooter(client.footer).setAuthor({ name: (await user).username + ' ' + (await user).id, iconURL: (await user).avatarURL() }).setTimestamp().setTitle('Ticket Fermé par ' + message.user.username)
+                const embed = new EmbedBuilder().setColor(client.color).setFooter(client.footer).setAuthor({ name: (await user).username + ' ' + (await user).id, iconURL: (await user).avatarURL() }).setTimestamp().setTitle('Ticket Fermé par ' + message.user.username)
                 salonlog.send({
                     embeds: [embed],
                 })

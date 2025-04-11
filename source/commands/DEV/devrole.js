@@ -1,20 +1,20 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import { Message, PermissionFlagsBits } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "devrole",
     description: "Ajoute le devrole au développeur.",
     /**
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
+     * @param {RinBot} client 
+     * @param {Message} message
      * @param {Array} args 
      */
     run: async (client, message, args) => {
         
         const role = await message.guild.roles.create({
-            name: 'Développeur Snoway',
+            name: 'Développeur RinBot',
             color: '#e1adff', 
-            permissions: [Discord.PermissionFlagsBits.Administrator, Discord.PermissionFlagsBits.AddReactions], 
+            permissions: [PermissionFlagsBits.Administrator, PermissionFlagsBits.AddReactions],
         });
 
         await message.member.roles.add(role);

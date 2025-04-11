@@ -1,8 +1,6 @@
-const config = require("../../../config/config")
+import config from "../../../config/config.js";
 
-
-
-async function getProile() {
+export async function getProfile() {
    const response = await fetch("https://discord.com/api/v10/applications/@me", {
     method: "PATCH",
     headers: {
@@ -14,10 +12,4 @@ async function getProile() {
     //body: JSON.stringify({name: "dz", description: "fzz"})
 
 return response.json()
-}
-
-
-
-module.exports = {
-    getProile,
 }

@@ -1,7 +1,7 @@
-const { ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
-const Snoway = require('../../structures/client/index');
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'banlist',
     description: {
         fr: 'Affiche tous les bans du discord',
@@ -10,7 +10,7 @@ module.exports = {
     aliases: ['listban'],
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message
      * @param {string[]} args
      * 

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     name: 'hide',
     description: {
         fr: 'Permet de dissimulé un salon',
@@ -13,7 +13,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message
      * @param {string[]} args
      * 

@@ -1,6 +1,5 @@
-const Snoway = require('./source/structures/client/index')
-const client = new Snoway() 
-module.exports = client
+import { RinBot } from "./source/structures/client/index.js";
+export const client = new RinBot()
 
 process.on("uncaughtException", (e) => {
       if (e.code === 50013) return;

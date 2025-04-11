@@ -1,9 +1,9 @@
-const Snoway = require("../../structures/client/index");
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "ready",
     /**
-     * @param {Snoway} client
+     * @param {RinBot} client
      */
     run: async (client) => {
         setInterval(() => {

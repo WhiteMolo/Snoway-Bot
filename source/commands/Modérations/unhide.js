@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     name: 'unhide',
     description: {
         fr: 'Permet d\'exposer un salon',
@@ -13,7 +13,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message
      * @param {string[]} args
      * 

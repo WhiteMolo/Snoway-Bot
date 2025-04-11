@@ -1,19 +1,18 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
   name: 'ping',
   description: "Affiche la latence du bot",
   description_localizations: {
-    "fr": "Affiche la latence du bot", 
+    "fr": "Affiche la latence du bot",
     "en-US": "Displays bot latency"
 },
   type: "1",
   /**
-   * 
-   * @param {Snoway} client 
-   * @param {Discord.Interaction} interaction 
-   * @param {string[]} args 
+   *
+   * @param {RinBot} client
+   * @param {Discord.Interaction} interaction
    */
   run: async (client, interaction) => {
     const start = Date.now()
@@ -23,4 +22,4 @@ module.exports = {
     const time = fin - start
     interaction.editReply({ content: `API: **${client.ws.ping}ms**\nBot: **${time}ms**` });
   }
-}
+};

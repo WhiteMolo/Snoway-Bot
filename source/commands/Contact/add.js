@@ -1,6 +1,7 @@
-const Discord = require('discord.js');
+import { Message } from "discord.js";
 
-module.exports = {
+
+export default {
     name: 'add',
     description: {
         fr: "Permet d'ajouter un membre dans un ticket",
@@ -12,8 +13,8 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
+     * @param {RinBot} client
+     * @param {Message} message
      * @param {string[]} args 
      * @returns 
      */

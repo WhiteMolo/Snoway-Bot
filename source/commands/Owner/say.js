@@ -1,6 +1,7 @@
-const Astroia = require('../../structures/client/index');
-const Discord = require('discord.js')
-module.exports = {
+import { RinBot } from "../../structures/client/index.js";
+import Discord from "discord.js";
+
+export default {
     name: 'say',
     usage: {
         fr: {
@@ -14,8 +15,8 @@ module.exports = {
         en: "Send a message as a bot",
     },
     /**
-     * 
-     * @param {Astroia} client 
+     *
+     * @param {RinBot} client
      * @param {Discord.Message} message
      * @param {Discord.args} args
      */
@@ -37,4 +38,4 @@ module.exports = {
 
 
     }
-}
+};

@@ -1,11 +1,12 @@
-const ms = require('ms');
-const Discord = require('discord.js');
+import ms from "../../structures/Utils/ms.js";
+import { ActionRowBuilder, ButtonBuilder, EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'ready',
     /**
      * 
-     * @param {import("../../structures/client")} client 
+     * @param {RinBot} client
      */
     run: async (client) => {
         setInterval(async () => {
@@ -25,18 +26,18 @@ module.exports = {
                         if (!message) return;
 
                         if (participants.length === 0) {
-                            const embed = new Discord.EmbedBuilder(message.embeds[0]);
+                            const embed = new EmbedBuilder(message.embeds[0]);
                             embed.setTitle('Giveaway Terminé');
                             embed.setDescription('Aucun participant. Le giveaway a été annulé.');
 
-                            const row = new Discord.ActionRowBuilder()
+                            const row = new ActionRowBuilder()
                                 .addComponents(
-                                    new Discord.ButtonBuilder()
+                                    new ButtonBuilder()
                                         .setEmoji(giveaway.emoji)
                                         .setCustomId('giveaway_entry_' + code)
                                         .setDisabled(true)
                                         .setStyle(1),
-                                    new Discord.ButtonBuilder()
+                                    new ButtonBuilder()
                                         .setLabel('Liste des participants')
                                         .setDisabled(true)
                                         .setCustomId('giveaway_list_' + code)
@@ -61,18 +62,18 @@ module.exports = {
                                 }
                             }
 
-                            const embed = new Discord.EmbedBuilder(message.embeds[0]);
+                            const embed = new EmbedBuilder(message.embeds[0]);
                             if (winners.length === 0) {
                                 embed.setTitle('Giveaway Terminé');
                                 embed.setDescription("Aucune personne n'a respecté les conditions du giveaway");
-                                const row = new Discord.ActionRowBuilder()
+                                const row = new ActionRowBuilder()
                                     .addComponents(
-                                        new Discord.ButtonBuilder()
+                                        new ButtonBuilder()
                                             .setEmoji(giveaway.emoji)
                                             .setCustomId('giveaway_entry_' + code)
                                             .setDisabled(true)
                                             .setStyle(1),
-                                        new Discord.ButtonBuilder()
+                                        new ButtonBuilder()
                                             .setLabel('Liste des participants')
                                             .setDisabled(true)
                                             .setCustomId('giveaway_list_' + code)
@@ -83,14 +84,14 @@ module.exports = {
                             } else {
                                 embed.setTitle('Giveaway Terminé');
                                 embed.setDescription(`Félicitations ${winners.join(', ')} ! Vous avez gagné le ${giveaway.prix}`);
-                                const row = new Discord.ActionRowBuilder()
+                                const row = new ActionRowBuilder()
                                     .addComponents(
-                                        new Discord.ButtonBuilder()
+                                        new ButtonBuilder()
                                             .setEmoji(giveaway.emoji)
                                             .setCustomId('giveaway_entry_' + code)
                                             .setDisabled(true)
                                             .setStyle(1),
-                                        new Discord.ButtonBuilder()
+                                        new ButtonBuilder()
                                             .setLabel('Liste des participants')
                                             .setDisabled(true)
                                             .setCustomId('giveaway_list_' + code)

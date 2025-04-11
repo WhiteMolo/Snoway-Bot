@@ -1,11 +1,11 @@
-const Snoway = require('../../structures/client/index');
-const Discord = require('discord.js');
-const OpenAI = require('openai');
+import { RinBot } from "../../structures/client/index.js";
+import Discord from "discord.js";
+import { OpenAI } from "openai";
 
 const openai = new OpenAI({
     apiKey: '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'
 });
-module.exports = {
+export default {
     name: 'chatgpt',
     description: {
         fr: "Permet de discuter avec ChatGPT",
@@ -16,9 +16,9 @@ module.exports = {
         en: {"chatgpt <message>": "Allows ChatGPT-3 discussion"},
     },
     /**
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message 
-     * @param {Snoway} args 
+     * @param {RinBot} args 
      * @returns 
      */
     run: async (client, message, args) => {
@@ -39,7 +39,7 @@ module.exports = {
                     new Discord.EmbedBuilder()
                         .setDescription(completion.choices[0].message.content)
                         .setColor(client.color)
-                        .setFooter({ text: "Snoway X Chatgpt" })
+                        .setFooter({ text: "RinBot X Chatgpt" })
                 ],
                 content: null
             })

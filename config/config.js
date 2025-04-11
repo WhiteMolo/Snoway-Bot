@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   token: "Put-Token-Here",
   botId: "Bot-Id",
   buyers: ["276705058370879489"],

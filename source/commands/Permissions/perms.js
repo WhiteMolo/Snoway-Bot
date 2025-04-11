@@ -1,14 +1,14 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
   name: 'perms',
   description: {
     fr: "Permet d'afficher la liste des permissions du bot, ajouter ou retirer permissions sur les rôles",
     en: "Display list of bot permissions, add or remove permissions on roles"
   },
   /**
-   * @param {Snoway} client 
+   * @param {RinBot} client 
    * @param {Discord.Message} message 
    * @param {Array} args 
    * @returns {void}

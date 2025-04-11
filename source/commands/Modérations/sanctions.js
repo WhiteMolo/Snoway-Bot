@@ -1,6 +1,10 @@
-const { MessageActionRow, MessageButton, InteractionCollector, ActionRowBuilder, ButtonBuilder, EmbedBuilder } = require('discord.js');
+import Discord, {
+    ActionRowBuilder,
+    ButtonBuilder,
+    EmbedBuilder
+} from "discord.js";
 
-module.exports = {
+export default {
     name: 'warnlist',
     aliases: ["sanction", "sanctions"],
     description: {

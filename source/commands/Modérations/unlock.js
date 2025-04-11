@@ -1,6 +1,7 @@
-const { EmbedBuilder } = require('discord.js');
+import { EmbedBuilder } from "discord.js";
 
-module.exports = {
+
+export default {
     name: 'unlock',
     description: {
         fr: 'Déverrouille le channel en rétablissant les permissions',
@@ -15,7 +16,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message
      * @param {string[]} args
      * 

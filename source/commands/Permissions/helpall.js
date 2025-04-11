@@ -1,14 +1,14 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
-const Snoway = require('../../structures/client/index');
+import { ActionRowBuilder, ButtonBuilder, EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'helpall',
     description: {
         fr: 'Affiche toutes les permissions du bot avec les commandes associées.',
         en: 'Displays all bot permissions with associated commands.',
     },
     /**
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Discord.Message} message
      * @param {Array} args
      */
@@ -43,7 +43,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setColor(client.color)
                 .setThumbnail(message.guild.iconURL())
-                .setTitle("Helpall - Snoway")
+                .setTitle("Helpall - RinBot")
                 .addFields(
                     {
                         name: `__${info.perm}__`,

@@ -1,12 +1,12 @@
-const Discord = require("discord.js");
-const Snoway = require("../../structures/client/index");
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "guildMemberAdd",
     /**
      *
-     * @param {Snoway} client
-     * 
+     * @param {RinBot} client
+     *
      */
     run: async (client, member) => {
         if(!member)return;
@@ -18,4 +18,4 @@ module.exports = {
             }
         }
     }
-}
+};

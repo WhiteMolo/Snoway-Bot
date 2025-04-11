@@ -1,13 +1,13 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'interactionCreate',
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Integration} interaction 
-     * @returns 
+     *
+     * @param {RinBot} client
+     * @param {Discord.Interaction} interaction
+     * @returns
      */
     run: async (client, interaction) => {
         if (interaction.type === Discord.InteractionType.ApplicationCommand) {
@@ -21,4 +21,4 @@ module.exports = {
             }
         }
     }
-}
+};

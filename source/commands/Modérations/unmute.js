@@ -1,7 +1,7 @@
-const Discord = require("discord.js");
-const ms = require("../../structures/Utils/ms");
+import Discord from "discord.js";
+import ms from "../../structures/Utils/ms.js";
 
-module.exports = {
+export default {
     name: 'unmute',
     aliases: ["untimeout"],
     description: {

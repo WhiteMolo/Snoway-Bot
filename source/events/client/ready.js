@@ -1,3 +1,7 @@
+import { RinBot } from "../../structures/client/index.js";
+import { ligne } from "../../structures/Utils/ligne.js";
+import { mind } from "gradient-string";
+
 const getNow = () => {
   return {
     time: new Date().toLocaleString("fr-FR", {
@@ -9,15 +13,13 @@ const getNow = () => {
     })
   };
 };
-const Snoway = require('../../structures/client/index');
-const ligne = require('../../structures/Utils/ligne');
-const { mind } = require('gradient-string');
 
-module.exports = {
+
+export default {
   name: 'ready',
   /**
 * 
-* @param {Snoway} client 
+* @param {RinBot} client 
 * 
 */
   run: async (client) => {
@@ -36,7 +38,7 @@ module.exports = {
     console.log(mind(`[LIGNES]   : ${ligne.ligne().toLocaleString()}`));
     console.log(mind(`[VERSION]  : ${client.version}`))
     console.log(mind(`___________________________________________________________\n`))
-    console.log(mind('Snoway est prêt'));
+    console.log(mind('RinBot est prêt'));
     console.log(mind(`___________________________________________________________\n`))
     const restartChannelId = await client.db.get(`restartchannel`);
     if (restartChannelId) {

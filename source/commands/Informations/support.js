@@ -1,24 +1,24 @@
-const { EmbedBuilder } = require('discord.js')
-const Snoway = require('../../structures/client/index')
+import { EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "support",
-    aliases: ["snoway"],
+    aliases: ["RinBot"],
     description: {
         fr: "Invite sur le support du bot !",
         en: "Invite to the bot support!"
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Snoway} message 
-     * @param {Snoway} args 
-     * @returns 
+     *
+     * @param {RinBot} client
+     * @param {RinBot} message
+     * @param {RinBot} args
+     * @returns
      */
     run: async (client, message, args) => {
 
         await message.channel.send({
-            embeds: [new EmbedBuilder().setColor(client.color).setDescription(`[Clique ici pour rejoindre le support Snoway Bots](${client.support})`)]
+            embeds: [new EmbedBuilder().setColor(client.color).setDescription(`[Clique ici pour rejoindre le support RinBot Bots](${client.support})`)]
         })
     }
-}
+};

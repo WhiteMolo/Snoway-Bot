@@ -1,8 +1,8 @@
-const { useQueue, useMainPlayer } = require("discord-player");
-const Discord = require('discord.js');
-const Snoway = require("../../structures/client/index");
+import { useMainPlayer, useQueue } from "discord-player";
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "volume",
     description: {
         fr: "Modifie le volume de la musique en cours de lecture.",
@@ -13,7 +13,7 @@ module.exports = {
         en: {"volume <volume>": "Changes the volume of the music currently playing."}},
     /**
      * 
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Discord.Message} message
      * @param {string[]} args
      * @returns

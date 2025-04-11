@@ -1,16 +1,16 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index');
+import { Message } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'allchannel',
     description: {
         fr: "Affiche tous les salons & catégories du serveur",
         en: "Displays all lounges & categories on the server"
     },
     /**
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
-     * @param {string[]} args 
+     * @param {RinBot} client
+     * @param {Message} message
+     * @param {string[]} args
      */
     run: async (client, message, args) => {
         try {
@@ -38,11 +38,11 @@ module.exports = {
 
             const embedMessage = await message.channel.send({
                 embeds: [
-                  {
+                    {
                         color: color,
                         footer: {
                             text: `Résultat(s) : ${allChannels.size}\n${message.guild.name} - ${client.footer.text}`
-                        },                        
+                        },
                         title: `Liste des channels sur ${message.guild.name}`,
                         description: channelList,
                     },

@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'langue',
     description: 'Change la langue du bot',
     usage: {
@@ -10,7 +10,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {import('discord.js').Message} message 
      * @param {string[]} args 
      */

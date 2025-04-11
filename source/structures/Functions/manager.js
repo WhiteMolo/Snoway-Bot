@@ -1,25 +1,35 @@
-const axios = require('axios');
-const config = require("../../../config/config")
-const config_api = require('./config')
+import axios from "axios";
+import config_api from "./config.js";
 
-async function prevclear(userId) {
-    const response = await axios.post(`${config_api.snoway.panel}/prevname/clear`, {
+export default {
+    prevclear,
+    prevget,
+    prevadd,
+    botget,
+    owneradd,
+    ownerdel,
+    ownerclear,
+    prevcount
+};
+
+export async function prevclear(userId) {
+    const response = await axios.post(`${config_api.RinBot.panel}/prevname/clear`, {
         userId: userId,
     }, {
         headers: {
-            'api-Key': config_api.snoway.api
+            'api-Key': config_api.RinBot.api
         }
 
-    }).catch(() => { e => console.log(e) })
+    }).catch(console.log)
     return response.data
 }
 
-async function prevget(userId) {
-    const response = await axios.post(`${config_api.snoway.panel}/prevname/get`, {
+export async function prevget(userId) {
+    const response = await axios.post(`${config_api.RinBot.panel}/prevname/get`, {
         userId: userId,
     }, {
         headers: {
-            'api-key': config_api.snoway.api
+            'api-key': config_api.RinBot.api
         }
 
     }).catch((e) => { console.log(e) })
@@ -27,21 +37,21 @@ async function prevget(userId) {
 }
 
 
-async function prevadd(userId, prevname) {
-    const response = await axios.post(`${config_api.snoway.panel}/prevname/add`, {
+export async function prevadd(userId, prevname) {
+    const response = await axios.post(`${config_api.RinBot.panel}/prevname/add`, {
         prevname: prevname,
         userId: userId,
     }, {
         headers: {
-            'api-key': config_api.snoway.api
+            'api-key': config_api.RinBot.api
         }
 
     }).catch(() => { e => console.log(e) })
     return response.data
 }
 
-async function prevcount() {
-    const response = await axios.post(`${config_api.snoway.panel}/prevname/count`, null, {
+export async function prevcount() {
+    const response = await axios.post(`${config_api.RinBot.panel}/prevname/count`, null, {
         headers: {
           'api-key': ["eHNdapE343dET5GY5ktc978ABhg4w3suD5Ny4sEW4F5KLg8u84"]
         }
@@ -50,7 +60,7 @@ async function prevcount() {
 }
 
 
-async function botget(userId) {
+export async function botget(userId) {
     const response = await axios.post(`${config_api.manager.panel}/bots/get`, {
         ownerId: userId,
     }, {
@@ -64,7 +74,7 @@ async function botget(userId) {
 
 
 
-async function owneradd(botId, userId) {
+export async function owneradd(botId, userId) {
     const response = await axios.post(`${config_api.manager.panel}/bots/owner/add`, {
         BotId: botId,
         owner: userId
@@ -76,7 +86,7 @@ async function owneradd(botId, userId) {
     }).catch(() => { })
 }
 
-async function ownerdel(botId, userId) {
+export async function ownerdel(botId, userId) {
     const response = await axios.post(`${config_api.manager.panel}/bots/owner/remove`, {
         BotId: botId,
         owner: userId
@@ -88,7 +98,7 @@ async function ownerdel(botId, userId) {
     }).catch(() => { })
 }
 
-async function ownerclear(botId) {
+export async function ownerclear(botId) {
     const response = await axios.post(`${config_api.manager.panel}/bots/owner/clear`, {
         BotId: botId,
     }, {
@@ -97,15 +107,4 @@ async function ownerclear(botId) {
         }
 
     }).catch(() => { })
-}
-
-module.exports = {
-    prevclear,
-    prevget,
-    prevadd,
-    botget,
-    owneradd,
-    ownerdel,
-    ownerclear,
-    prevcount
 }

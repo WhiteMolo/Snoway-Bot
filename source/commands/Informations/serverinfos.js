@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'serverinfo',
     aliases: ['serverinfos', "si"],
     description: {
@@ -10,9 +10,9 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client
      * @param {Discord.Message} message 
-     * @param {Snoway} args 
+     * @param {RinBot} args
      */
     run: async (client, message, args) => {
         const member = await message.guild.members.fetch();

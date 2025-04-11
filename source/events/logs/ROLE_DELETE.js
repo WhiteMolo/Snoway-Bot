@@ -1,6 +1,6 @@
-const { EmbedBuilder } = require('discord.js');
+import { EmbedBuilder } from "discord.js";
 
-module.exports = {
+export default {
     name: 'roleDelete',
     run: async (client, role) => {
         const color = await client.db.get(`color_${role.guild.id}`) || client.config.color;

@@ -1,7 +1,13 @@
-const { EmbedBuilder } = require('discord.js');
+import Discord, { EmbedBuilder } from "discord.js";
 
-module.exports = {
+
+export default {
     name: 'channelUpdate',
+    /**
+     * @param {RinBot} client
+     * @param {Discord.Channel} oldChannel
+     * @param {Discord.Channel} newChannel
+     */
     run: async (client, oldChannel, newChannel) => {
         const color = await client.db.get(`color_${newChannel.guild.id}`) || client.config.color;
         const logs = await client.db.get(`logs_${newChannel.guild.id}`) || [];

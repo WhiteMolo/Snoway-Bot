@@ -1,8 +1,8 @@
-const { useQueue, useMainPlayer } = require("discord-player");
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
-const Snoway = require("../../structures/client/index");
+import { useMainPlayer, useQueue } from "discord-player";
+import { ActionRowBuilder, ButtonBuilder, EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "queue",
     aliases: ['mabite'],
     description: {
@@ -11,8 +11,8 @@ module.exports = {
     },
 
     /**
-     * @param {Snoway} client
-     * @param {Snoway} message
+     * @param {RinBot} client
+     * @param {RinBot} message
      * @param {String[]} args
      */
     run: async (client, message, args) => {

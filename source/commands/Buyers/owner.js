@@ -1,6 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
-module.exports = {
+import { Message } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: "owner",
     description: {
         fr: "Ajoute/Retire un owner du bot",
@@ -16,8 +17,8 @@ module.exports = {
         }
     },
     /**
-     * @param {Snoway} client
-     * @param {Discord.Message} message
+     * @param {RinBot} client
+     * @param {Message} message
      * @param {Array} args
      */
     run: async (client, message, args) => {

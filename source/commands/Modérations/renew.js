@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "renew",
     aliases: ["purge"],
     description: {
@@ -9,11 +9,11 @@ module.exports = {
         en: "Allows you to recreate a living room"
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
-     * @param {Discord.Message} args 
-     * @returns 
+     *
+     * @param {RinBot} client
+     * @param {Discord.Message} message
+     * @param {Discord.Message} args
+     * @returns
      */
     run: async (client, message, args) => {
         let channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]) || message.guild.channels.cache.get(message.channel.id);
@@ -30,4 +30,4 @@ module.exports = {
             channel.send('Une erreur viens de se produire.');
         }
     }
-}
+};

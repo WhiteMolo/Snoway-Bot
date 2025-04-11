@@ -1,7 +1,7 @@
-const Discord = require("discord.js");
-const ms = require("../../structures/Utils/ms");
+import Discord from "discord.js";
+import ms from "../../structures/Utils/ms.js";
 
-getNow = () => {
+const getNow = () => {
   return {
     time: new Date().toLocaleString("fr-FR", {
       timeZone: "Europe/Paris",
@@ -13,7 +13,7 @@ getNow = () => {
   };
 };
 
-module.exports = {
+export default {
   name: 'mute',
   description: {
     fr: 'Permet de rendre muet un utilisateur du serveur',

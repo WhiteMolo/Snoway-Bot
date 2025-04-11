@@ -1,6 +1,8 @@
-const {EmbedBuilder, Message} = require('discord.js');
-const Snoway = require('../../structures/client');
-module.exports = {
+import { EmbedBuilder, Message } from "discord.js";
+
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
   name: 'fivem',
   description: {
     fr: "Connecte votre serveur FiveM.",
@@ -8,7 +10,7 @@ module.exports = {
   },
   /**
    * 
-   * @param {Snoway} client 
+   * @param {RinBot} client 
    * @param {Message} message 
    * @param {string[]} args 
    */

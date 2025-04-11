@@ -1,8 +1,10 @@
-const { QueryType, useMainPlayer, useQueue } = require("discord-player");
+import { QueryType, useMainPlayer, useQueue } from "discord-player";
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
 const regex = /(https?:\/\/(?:www\.)?(?:open\.spotify|deezer|soundcloud|music\.apple)\.[a-z\.]+\/[^\s]+)/g;
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index')
-module.exports = {
+
+export default {
     name: "play",
     aliases: ['p'],
     description: {
@@ -12,7 +14,7 @@ module.exports = {
     usage: {fr: {"play <musique>": "Permet de lancer une musique"}, en: {"play <song>": "Play music"}},
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message 
      * @param {args[]} args 
      * @returns 

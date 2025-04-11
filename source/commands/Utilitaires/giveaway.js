@@ -1,7 +1,7 @@
-const Snoway = require("../../structures/client");
-const Discord = require('discord.js');
+import { RinBot } from "../../structures/client/index.js";
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Message } from "discord.js";
 
-module.exports = {
+export default {
     name: 'giveaway',
     aliases: ["giveaways", "gsart", "gw"],
     description: {
@@ -10,8 +10,8 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
+     * @param {RinBot} client 
+     * @param {Message} message
      * @param {string[]} args 
      * @returns 
      */
@@ -82,9 +82,9 @@ module.exports = {
                         })
                 )
 
-            const button = new Discord.ActionRowBuilder()
+            const button = new ActionRowBuilder()
                 .addComponents(
-                    new Discord.ButtonBuilder()
+                    new ButtonBuilder()
                         .setCustomId('start')
                         .setStyle(2)
                         .setLabel('Lancer le giveaway')
@@ -140,7 +140,7 @@ module.exports = {
 
                     const code = await client.functions.bot.code()
     
-                    const embed = new Discord.EmbedBuilder()
+                    const embed = new EmbedBuilder()
                     .setColor(client.color)
                     .setFooter({text: "Giveaway code: " + code})
                     .setTitle('Giveaway: ' + db.prix)
@@ -149,16 +149,16 @@ module.exports = {
                         {name: "Fin du giveaway", value: `<t:${Math.floor((Date.now() + db.dure) / 1000)}:R>`}
                     )
 
-                    const row = new Discord.ActionRowBuilder()
+                    const row = new ActionRowBuilder()
                                 .addComponents(
-                                    new Discord.ButtonBuilder()
+                                    new ButtonBuilder()
                                     .setEmoji(db.emoji)
                                     .setCustomId('giveaway_entry_' + code)
-                                    .setStyle(Discord.ButtonStyle.Primary),
-                                    new Discord.ButtonBuilder()
+                                    .setStyle(ButtonStyle.Primary),
+                                    new ButtonBuilder()
                                     .setLabel('Liste des participants')
                                     .setCustomId('giveaway_list_' + code)
-                                    .setStyle(Discord.ButtonStyle.Secondary)
+                                    .setStyle(ButtonStyle.Secondary)
                                 )
 
                     const mss = await channel.send({
@@ -190,7 +190,7 @@ module.exports = {
 
                     i.editReply({
                         content: 'Giveaway lancé',
-                        components: [new Discord.ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setStyle(5).setURL(`https://discord.com/channels/${message.guildId}/${channel.id}/${mss.id}`).setLabel('Lien du giveaway'))]
+                        components: [new ActionRowBuilder().addComponents(new Discord.ButtonBuilder().setStyle(5).setURL(`https://discord.com/channels/${message.guildId}/${channel.id}/${mss.id}`).setLabel('Lien du giveaway'))]
                     })
                     break;
 

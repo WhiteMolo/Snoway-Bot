@@ -1,11 +1,11 @@
-const Discord = require('discord.js');
+import { Client, GuildMember } from "discord.js";
 
-module.exports = {
+export default {
     name: 'guildMemberAdd',
     /**
-     * 
-     * @param {Discord.Client} client 
-     * @param {Discord.GuildMember} member 
+     *
+     * @param {Client} client
+     * @param {GuildMember} member
      */
     run: async (client, member) => {
         if (!member) return;
@@ -27,7 +27,7 @@ module.exports = {
                         console.log(`Inviter par ${inviteData.code} par ${user.tag}`);
                         let db = await client.db.get(`invite_user_${member.guild.id}`) || [];
                         let result = db.find(user => user.id === inviterId);
-                        
+
                         if (!result) {
                             result = {
                                 id: inviterId,
@@ -38,12 +38,12 @@ module.exports = {
                                 bonus: 0
                             };
                         }
-                        
+
                         result.total++;
                         result.valid++;
                         db.push(result);
                         await client.db.set(`invite_user_${member.guild.id}`, db);
-                        
+
                     }
                 }
             });

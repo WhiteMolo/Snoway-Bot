@@ -1,7 +1,7 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js')
-const Snoway = require('../../structures/client/index')
-const Discord = require('discord.js')
-module.exports = {
+import { ActionRowBuilder, ButtonBuilder, EmbedBuilder, Message } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: "userinfo",
     aliases: ["ui"],
     description: {
@@ -13,11 +13,11 @@ module.exports = {
         en: { "userinfo <id/mention>": "To obtain information about a user" }
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
-     * @param {Snoway} args 
-     * @returns 
+     *
+     * @param {RinBot} client
+     * @param {Message} message
+     * @param {RinBot} args
+     * @returns
      */
     run: async (client, message, args) => {
         let target;
@@ -163,8 +163,8 @@ module.exports = {
             if (i.customId === 'del') {
                 i.message.delete()
             }
-           
+
         })
     }
-}
+};
 

@@ -1,10 +1,10 @@
-const Discord = require('discord.js');
+import { Invite } from "discord.js";
 
-module.exports = {
+export default {
     name: 'inviteDelete',
     /**
-     * 
-     * @param {Discord.Invite} invite 
+     * @param {RinBot} client
+     * @param {Invite} invite
      */
     run: async (client, invite) => {
         const invitesData = client.invites;

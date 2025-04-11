@@ -1,12 +1,13 @@
-const Discord = require("discord.js");
-const Snoway = require("../../structures/client/index");
-const { sleep } = require('../../structures/Functions/sleep');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+import { sleep } from "../../structures/Functions/sleep.js";
 
-module.exports = {
+
+export default {
     name: "guildMemberAdd",
     /**
      *
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Discord.GuildMember} member
      * 
      */

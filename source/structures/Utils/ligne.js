@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from "fs";
 
 const foldersToCount = [
   './source',
@@ -29,7 +29,7 @@ function countLinesInFolder(folderPath) {
   return totalLines;
 }
 
-function ligne() {
+export function ligne() {
   let totalLines = 0;
 
   for (const folderPath of foldersToCount) {
@@ -38,7 +38,3 @@ function ligne() {
 
   return totalLines;
 }
-
-module.exports = {
-  ligne,
-};

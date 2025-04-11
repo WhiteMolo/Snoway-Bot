@@ -1,17 +1,15 @@
-const { QuickDB } = require("quick.db")
+import { QuickDB } from "quick.db";
+import config from "../../../config/config.js";
+
 const db = new QuickDB();
-const config = require("../../../config/config")
 
+export default { owner, buyer };
 
-async function owner(userId) {
+export async function owner(userId) {
     const database = await db.get(`owner`) || []
     return database.includes(userId)
 }
 
-async function buyer(userId) {
+export async function buyer(userId) {
     return config.buyers.includes(userId)
-}
-module.exports = {
-    owner,
-    buyer
 }

@@ -1,6 +1,17 @@
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType, Message, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
-const {Snoway} = require('../../structures/client/index')
-module.exports = {
+import { RinBot } from "../../structures/client/index.js";
+
+import {
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
+    ComponentType,
+    EmbedBuilder,
+    Message,
+    PermissionFlagsBits
+} from "discord.js";
+
+
+export default {
     name: 'alladmin',
     description: {
         fr: "Liste tous les membres avec la permission d\'administrateur",
@@ -8,7 +19,7 @@ module.exports = {
     },
     /**
      *
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Message}message
      */
     run: async (client, message) => {

@@ -1,11 +1,10 @@
-const fetch = require('node-fetch');
-const Zip = require('adm-zip');
+import fetch from "node-fetch";
+import Zip from "adm-zip";
+import { RinBot } from "../../structures/client/index.js";
+import Discord from "discord.js";
+import ms from "../../structures/Utils/ms.js";
 
-const Snoway = require("../../structures/client");
-const Discord = require('discord.js');
-const ms = require('../../structures/Utils/ms');
-
-module.exports = {
+export default {
     name: 'zipemoji',
     aliases: ["emojizip", "emojitozip"],
     description: {
@@ -14,7 +13,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client
      * @param {Discord.Message} message 
      * @param {string[]} args 
      * @returns 
@@ -43,7 +42,7 @@ module.exports = {
 
             await msg.edit({
                 content: null,
-                files: [{ attachment: zip.toBuffer(), name: `Snoway_${guildd.id}.zip` }]
+                files: [{ attachment: zip.toBuffer(), name: `RinBot_${guildd.id}.zip` }]
             });
         } catch (err) {
             console.error(err);

@@ -1,10 +1,10 @@
-const Snoway = require("../../structures/client/index");
-const Discord = require('discord.js')
+import { RinBot } from "../../structures/client/index.js";
+import Discord from "discord.js";
 
-module.exports = {
+export default {
     name: "messageDelete",
     /**
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Discord.Message} message
      */
     run: async (client, message) => {

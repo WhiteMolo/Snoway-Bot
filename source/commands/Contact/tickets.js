@@ -1,8 +1,9 @@
-const { EmbedBuilder, Message, StringSelectMenuBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
-const { sleep } = require('../../structures/Functions/sleep.js')
-const ms = require('../../structures/Utils/ms.js')
-module.exports = {
+import { ActionRowBuilder, ButtonBuilder, EmbedBuilder, Message, StringSelectMenuBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+import { sleep } from "../../structures/Functions/sleep.js";
+import ms from "../../structures/Utils/ms.js";
+
+export default {
     name: 'ticket',
     aliases: ["tickets"],
     description: {
@@ -11,7 +12,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Message} message 
      * @param {string[]} args 
      * @returns 
@@ -47,7 +48,7 @@ module.exports = {
                 .addComponents(
                     new StringSelectMenuBuilder()
                         .setCustomId('configmenu')
-                        .setPlaceholder('Snoway')
+                        .setPlaceholder('RinBot')
                         .addOptions([
                             {
                                 label: await client.lang('ticket.command.embedOption.select.categorie'),
@@ -227,8 +228,8 @@ module.exports = {
 
             if (optionselect.length === 0) {
                 optionselect.push({
-                    label: 'Snoway Prime',
-                    value: 'snowayv3ticketsettings'
+                    label: 'RinBot Prime',
+                    value: 'RinBotv3ticketsettings'
                 });
             }
 
@@ -245,7 +246,7 @@ module.exports = {
 
             const buttonOptions = new ButtonBuilder()
                 .setLabel(`${optionsValue.length}/25`)
-                .setCustomId('customid_snoway')
+                .setCustomId('customid_RinBot')
                 .setDisabled(true)
                 .setStyle(2)
 
@@ -342,7 +343,7 @@ module.exports = {
                         .addComponents(
                             new StringSelectMenuBuilder()
                                 .setCustomId('ticket')
-                                .setPlaceholder('Snoway')
+                                .setPlaceholder('RinBot')
                                 .addOptions(options)
                         );
             

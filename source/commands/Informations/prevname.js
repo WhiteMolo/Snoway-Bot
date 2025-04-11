@@ -1,7 +1,7 @@
-const { EmbedBuilder } = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import { EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'prevname',
     aliases: ['prevnames'],
     description: {
@@ -14,9 +14,9 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
-     * @param {Snoway} message 
-     * @param {Snoway} args 
+     * @param {RinBot} client 
+     * @param {RinBot} message 
+     * @param {RinBot} args 
      */
     run: async (client, message, args) => {
         let member = message.mentions.members.first() || client.users.cache.get(args[0]) || message.author;

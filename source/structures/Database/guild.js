@@ -1,4 +1,4 @@
-module.exports = async (client, db) => {
+export default async (client, db) => {
     client.guilds.cache.forEach(guild => {
         setTimeout(async () => {
             setInterval(async () => {
@@ -8,7 +8,7 @@ module.exports = async (client, db) => {
                     await db.set(`langue`, "fr");
                 }
 
-                
+
                 if (!check) {
                     const defaultPermissions = {
                         "perm1": { "role": null, "commands": [] },
@@ -33,4 +33,4 @@ module.exports = async (client, db) => {
             }, 3000);
         }, 3000);
     });
-};
+}

@@ -1,12 +1,13 @@
-const Snoway = require("../../structures/client/index");
-const Discord = require("discord.js")
-module.exports = {
+import { RinBot } from "../../structures/client/index.js";
+import { User } from "discord.js";
+
+export default {
     name: "userUpdate",
     /**
      * 
-     * @param {Snoway} client 
-     * @param {Discord.User} oldUser 
-     * @param {Discord.User} newUser 
+     * @param {RinBot} client 
+     * @param {User} oldUser
+     * @param {User} newUser
      * @returns 
      */
     run: async (client, oldUser, newUser) => {

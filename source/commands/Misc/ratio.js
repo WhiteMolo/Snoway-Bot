@@ -1,20 +1,21 @@
-const Discord = require('discord.js')
-const Snoway = require('../../structures/client/index')
-module.exports = {
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: 'ratio',
     description: {
         fr: "Ratio un membre",
         en: "Single member ratio"
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
-     * @param {string[]} args 
+     *
+     * @param {RinBot} client
+     * @param {Discord.Message} message
+     * @param {string[]} args
      */
     run: async (client, message, args) => {
 
-       message.react('✅') 
+       message.react('✅')
        message.react('❌')
     }
-}
+};

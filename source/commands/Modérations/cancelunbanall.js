@@ -1,6 +1,6 @@
-const Snoway = require("../../structures/client");
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'cancelunbanall',
     description: {
         fr: 'Annule l\'unbanall de tous les bans.',
@@ -8,8 +8,8 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
-     * @param {Snoway} message 
+     * @param {RinBot} client
+     * @param {RinBot} message
      * @returns 
      */
     run: async (client, message) => {

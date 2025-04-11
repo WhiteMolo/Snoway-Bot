@@ -1,6 +1,6 @@
-const Discord = require('discord.js');
+import { Message, TextChannel } from "discord.js";
 
-module.exports = {
+export default {
     name: 'remove',
     description: {
         fr: "Retirer un membre au ticket",
@@ -12,8 +12,8 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
+     * @param {RinBot} client 
+     * @param {Message} message
      * @param {string[]} args 
      * @returns 
      */
@@ -28,7 +28,7 @@ module.exports = {
         if (!resul) return message.channel.send({ content: `\`❌\` Erreur : Ce salon n'est pas un de mes ticket` });
 
         try {
-            /** @type {import("discord.js").TextChannel} */
+            /** @type {TextChannel} */
             message.channel.permissionOverwrites.delete(member, `${interaction.user.tag} removed ${member.user.tag} from the ticket`);
             message.reply(`${member} a été retiré du ticket`);
         } catch (error) {

@@ -1,8 +1,8 @@
-const Discord = require('discord.js');
-const os = require('os');
-const Snoway = require('../../structures/client/index.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+import os from "os";
 
-module.exports = {
+export default {
     name: 'botinfo',
     description: "Affiche les informations du bot",
     description_localizations: {
@@ -12,7 +12,7 @@ module.exports = {
     type: 1,
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Interaction} interaction 
      * @param {string[]} args 
      */

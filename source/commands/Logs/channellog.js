@@ -1,8 +1,8 @@
-const { EmbedBuilder } = require('discord.js');
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index');
+import { EmbedBuilder } from "discord.js";
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'channellogs',
     aliases: ["channelogs", "logchannel", "logschannel"],
     description: {
@@ -11,7 +11,7 @@ module.exports = {
     },
     /**
      *
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Discord.Message} message
      * @param {string[]} args
      */

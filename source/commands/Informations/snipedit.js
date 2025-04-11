@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'editsnipe',
     aliases: ['snipedit'],
     description: {
@@ -9,10 +9,10 @@ module.exports = {
         en: "View the last modified message of a salon"
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
-     * @param {Snoway} args 
+     *
+     * @param {RinBot} client
+     * @param {Discord.Message} message
+     * @param {RinBot} args
      */
     run: async (client, message, args) => {
 
@@ -36,4 +36,4 @@ module.exports = {
             embeds: [snipeEmbed]
         })
     }
-}
+};

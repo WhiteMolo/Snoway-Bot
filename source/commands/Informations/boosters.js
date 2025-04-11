@@ -1,6 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index')
-module.exports = {
+import { EmbedBuilder, Message } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: "boosters",
     aliases: ["booster"],
     description: {
@@ -8,10 +9,10 @@ module.exports = {
         en: "View all boosters on the server"
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
-     * @param {string[]} args 
+     *
+     * @param {RinBot} client
+     * @param {Message} message
+     * @param {string[]} args
      */
     run: async (client, message, args) => {
 
@@ -23,7 +24,7 @@ module.exports = {
                 desc += `${m.user} (\`${m.user.id}\`)\n`
             })
 
-        let boostE = new Discord.EmbedBuilder()
+        let boostE = new EmbedBuilder()
             .setTitle('Liste des boosters')
             .setDescription(desc || "Aucun booster")
             .setColor(client.color)
@@ -33,4 +34,4 @@ module.exports = {
             })
         message.channel.send({ embeds: [boostE], allowedMentions: { repliedUser: false } });
     }
-}
+};

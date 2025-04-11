@@ -1,8 +1,8 @@
-const Discord = require('discord.js');
-const axios = require('axios');
-const Snoway = require('../../structures/client/index');
+import Discord from "discord.js";
+import axios from "axios";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'osu',
     description: {
         fr: "Envoie les informations du profil osu! d\'un joueur.",
@@ -14,7 +14,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client
      * @param {Discord.Message} message 
      * @param {string[]} args 
      */

@@ -1,6 +1,6 @@
-const Discord = require('discord.js');
+import Discord from "discord.js";
 
-module.exports = {
+export default {
     name: 'giveawayend',
     description: {
         fr: 'Permet de mettre fin à un giveaway en cours',
@@ -13,7 +13,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message 
      * @param {string[]} args 
      * @returns 

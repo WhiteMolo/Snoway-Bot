@@ -1,12 +1,12 @@
-const { ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
-const Discord = require('discord.js');
-const discordTranscripts = require('discord-html-transcripts');
-module.exports = {
+import Discord, {ActionRowBuilder, StringSelectMenuBuilder} from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+import discordTranscripts from "discord-html-transcripts";
+
+export default {
     name: "interactionCreate",
     /**
-     * @param {Snoway} client
-     * @param {Snoway} interaction
+     * @param {RinBot} client
+     * @param {Discord.Interaction} interaction
      */
     run: async (client, interaction) => {
         if (!interaction.isButton()) return;
@@ -76,7 +76,7 @@ module.exports = {
                 }
             }
 
-    
+
             const salonlog = client.channels.cache.get(dboption.logs)
 
             if (salonlog) {
@@ -99,4 +99,4 @@ module.exports = {
         }
 
     }
-}
+};

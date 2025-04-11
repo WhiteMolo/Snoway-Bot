@@ -1,6 +1,6 @@
-const Discord = require('discord.js');
+import Discord from "discord.js";
 
-module.exports = {
+export default {
     name: 'bringall',
     description: {
         fr: 'Déplace tous les membres dans un salon vocal spécifié',

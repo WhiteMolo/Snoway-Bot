@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'ghostjoin',
     aliases: ["ghostping", "ghost"],
     description: {
@@ -9,11 +9,11 @@ module.exports = {
         en: "Allows you to configure the rooms in which a new member will be pinged"
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
-     * @param {args[]} args 
-     * @returns 
+     *
+     * @param {RinBot} client
+     * @param {Discord.Message} message
+     * @param {args[]} args
+     * @returns
      */
     run: async (client, message, args) => {
         const msg = await message.channel.send({
@@ -63,7 +63,7 @@ module.exports = {
                     flags: 64
                 })
             }
-            
+
             await i.deferUpdate();
             switch (i.customId) {
                 case "channel-ping":
@@ -77,7 +77,7 @@ module.exports = {
                             dbChannels.push(channel);
                         }
                     });
-                    
+
                     await client.db.set(`ghostjoin_${message.guild.id}`, dbChannels);
                     update();
                     break;
@@ -90,4 +90,4 @@ module.exports = {
 
         })
     }
-}
+};

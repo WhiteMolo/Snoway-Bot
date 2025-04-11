@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     name: 'lock',
     description: {
         fr: 'Verrouille le channel en restreignant les permissions',
@@ -13,7 +13,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message
      * @param {string[]} args
      * 

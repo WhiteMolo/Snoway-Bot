@@ -1,7 +1,12 @@
-const { EmbedBuilder } = require('discord.js');
+import Discord, { EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'channelDelete',
+    /**
+     * @param {RinBot} client
+     * @param {Discord.Channel} channel
+     */
     run: async (client, channel) => {
         const color = await client.db.get(`color_${channel.guild.id}`) || client.config.color;
         const logs = await client.db.get(`logs_${channel.guild.id}`) || [];

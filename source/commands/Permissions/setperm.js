@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     name: 'setperm',
     description: 'Attribue un rôle à une permission.',
     usage: {

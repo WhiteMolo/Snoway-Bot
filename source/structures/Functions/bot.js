@@ -1,8 +1,8 @@
-const Snoway = require('../../structures/client/index.js');
-const axios = require('axios');
-const config = require('./config')
-const config_bot = require('../../../config/config')
-module.exports = {
+import axios from "axios";
+import funcConfig from "./config.js";
+import botConfig from "../../../config/config.js";
+
+export default {
     async getImageAnime(action) {
         try {
             const actions = ["pat", "hug", "waifu", "cry", "kiss", "slap", "smug", "punch", "smile"];
@@ -10,12 +10,11 @@ module.exports = {
                 throw `Action inconnue, options d'action valides : ${actions.join(", ")}`;
             }
 
-            const url = `https://api.giphy.com/v1/gifs/search?api_key=${config.api.giphy.token}&rating=g&q=anime+${action}`;
+            const url = `https://api.giphy.com/v1/gifs/search?api_key=${funcConfig.api.giphy.token}&rating=g&q=anime+${action}`;
             const response = await axios.get(url);
             if (response.data.data && response.data.data.length > 0) {
                 const randomIndex = Math.floor(Math.random() * response.data.data.length);
-                const gifUrl = response.data.data[randomIndex].images.preview_gif.url;
-                return gifUrl;
+                return response.data.data[randomIndex].images.preview_gif.url;
             } else {
                 console.error('Aucune donnée de GIF trouvée.');
             }
@@ -71,7 +70,7 @@ module.exports = {
         try {
             const response = await axios.get(`https://discord.com/api/v10/users/${userId}`, {
                 headers: {
-                    'Authorization': 'Bot ' + config_bot.token,
+                    'Authorization': 'Bot ' + botConfig.token,
                 },
             });
             return response.data;
@@ -82,14 +81,14 @@ module.exports = {
 
     refreshConfig() {
         delete this.config;
-        delete require.cache[require.resolve('../../../config/config')];
-        this.config = require('../../../config/config');
+        delete require.cache[require.resolve('../../../config/config.js')];
+        this.config = botConfig;
     },
     
     async invite(invite_url) {
         const response = await axios.get(`https://discord.com/api/v10/invites/${invite_url}`, {
             headers: {
-                'Authorization': "Bot " + config_bot.token
+                'Authorization': "Bot " + botConfig.token
             }
 
         })
@@ -143,7 +142,7 @@ module.exports = {
             "lavande": "#E6E6FA",
             "corail": "#FF7F50",
             "beige": "#F5F5DC",
-            "defaut": config_bot.color
+            "defaut": botConfig.color
         };
 
         const colorRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;

@@ -1,12 +1,13 @@
-const { EmbedBuilder, Message } = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import { EmbedBuilder, Message } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+import { inspect } from "util";
 
-module.exports = {
+export default {
     name: 'eval',
     description: 'Évalue du code JavaScript',
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client
      * @param {Message} message 
      * @param {string[]} args 
      * @returns 
@@ -18,7 +19,7 @@ module.exports = {
             let evalcode = await eval(code);
 
             if (typeof evalcode !== 'string') {
-                evalcode = require('util').inspect(evalcode);
+                evalcode = inspect(evalcode);
             }
             
             message.channel.send({
@@ -31,7 +32,7 @@ module.exports = {
                 ]
             });
         } catch (err) {
-            message.channel.send("Erreur ```js\n"+ err + "```")
+            message.channel().send("Erreur ```js\n"+ err + "```")
         }
     },
 };

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     buyers: "<:buyer:1189236174045323285>",
     owners: "<:owners:1189298926851993676>",
     del: "<:delete:1203418392225390672>",
@@ -37,8 +37,6 @@ module.exports = {
     wl_on: "<:wl_on:1217173485374148679>",
     wl_off: "<:wl_off:1217173484137091152>",
     logs: "<:logs:1217484515543355423>",
-    no_white: "<:snoway_no:1217570485433274431>",
-    slash: "<:slash_cmd:1218216636356628510>",
-    temps: "<:temps:1218218228350980098>",
-    message: "<:message:1218232422210998442>"
-}
+    no_white: "<:RinBot_no:1217570485433274431>",
+    slash: "<:slash_cmd:1218216636356628510>"
+};

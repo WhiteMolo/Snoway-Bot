@@ -1,15 +1,15 @@
-const Discord = require('discord.js');
-const ms = require('ms');
-const Snoway = require('../../structures/client/index')
+import { Message } from "discord.js";
+import ms from "../../structures/Utils/ms.js";
+import { RinBot } from "../../structures/client/index.js";
 
 const raid = new Map();
 
-module.exports = {
+export default {
     name: 'messageCreate',
     /**
-  * @param {Snoway} client
-  * @param {Discord.Message} message
-  */
+     * @param {RinBot} client
+     * @param {Message} message
+     */
     run: async (client, message) => {
         if (!message.guild || message.author.bot || message.author.id === message.guild.ownerId || message.author.id === client.user.id || client.config.buyers.includes(message.author.id)) return;
         const member = message.member;
@@ -32,14 +32,14 @@ module.exports = {
                         userData.warn = true;
                         switch (db.sanction) {
                             case "BAN":
-                                message.member.ban({ reason: "Snoway - Antispam" });
+                                message.member.ban({ reason: "RinBot - Antispam" });
                                 break;
                             case "KICK":
-                                message.member.kick("Snoway - Antispam");
+                                message.member.kick("RinBot - Antispam");
                                 break;
                             case "MUTE":
                                 message.member.roles.set([]);
-                                message.member.timeout(ms('15s'), { reason: "Snoway - Antispam" });
+                                message.member.timeout(ms('15s'), { reason: "RinBot - Antispam" });
                                 break;
                             default:
                                 break;
@@ -71,7 +71,7 @@ module.exports = {
             messages: [message]
         });
     }
-}
+};
 
 function sendNtm(client, userIds, channelId, userDataArray, db) {
     if (userIds.length === 0) return;
@@ -91,7 +91,10 @@ function sendNtm(client, userIds, channelId, userDataArray, db) {
 
 
     let embed = new Discord.EmbedBuilder()
-        .setFooter({ text: `${messagesToDelete.length || 0} messages supprimés dans ${channel.name}`, iconURL: channel.guild.iconURL() })
+        .setFooter({
+            text: `${messagesToDelete.length || 0} messages supprimés dans ${channel.name}`,
+            iconURL: channel.guild.iconURL()
+        })
         .setTimestamp()
         .setAuthor({ name: "・ Actions non autorisées" })
         .addFields({ name: "・Utilisateurs", value: `\`\`\`py\n${mentionUsers}\`\`\`` })

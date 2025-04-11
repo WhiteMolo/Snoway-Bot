@@ -1,9 +1,9 @@
-const { QuickDB } = require("quick.db");
-const { EmbedBuilder } = require('discord.js');
+import { QuickDB } from "quick.db";
+import FiveM from "fivem";
+
 const db = new QuickDB();
 
-async function getStatus() {
-    const FiveM = require("fivem");
+export async function getStatus() {
     const ipserv = await getServerdb();
 
     try {
@@ -16,8 +16,7 @@ async function getStatus() {
     }
 }
 
-async function getPlayerMax() {
-    const FiveM = require("fivem");
+export async function getPlayerMax() {
     const ipserv = await getServerdb();
     try {
         const srv = new FiveM.Server(ipserv);
@@ -34,8 +33,7 @@ async function getPlayerMax() {
     }
 }
 
-async function getAllPlayer() {
-    const FiveM = require("fivem");
+export async function getAllPlayer() {
     const ipserv = await getServerdb();
 
     try {
@@ -54,17 +52,10 @@ async function getAllPlayer() {
     }
 }
 
-async function getServerdb() {
+export async function getServerdb() {
     const dbs = await db.get(`fivemip`);
     if (dbs) return ''; 
 
     const { ip, port } = dbs;
     return `${ip}:${port}`;
 }
-
-module.exports = {
-    getStatus,
-    getPlayerMax,
-    getAllPlayer,
-    getServerdb
-};

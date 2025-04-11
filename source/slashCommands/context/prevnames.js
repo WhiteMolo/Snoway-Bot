@@ -1,12 +1,12 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import Discord, { EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "prevnames",
     type: "2",
     /**
-     * @param {Snoway} client
-     * @param {Discord.Integration} interaction
+     * @param {RinBot} client
+     * @param {Discord.Interaction} interaction
      */
     run: async (client, interaction) => {
         await interaction.deferReply({ ephemeral: true });
@@ -22,7 +22,7 @@ module.exports = {
         }
 
 
-        const embed = new Discord.EmbedBuilder()
+        const embed = new EmbedBuilder()
             .setColor(color)
             .setTitle(author ? "Vos Prevname" : `Prevname de ${user.username}`)
             .setDescription(prev.prevnames.map((entry, index) => `**${index + 1} -** <t:${Math.floor(entry.temps)}:d> - [\`${entry.prevname}\`](https://discord.com/users/${user.id})`).join('\n'))

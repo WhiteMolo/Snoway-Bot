@@ -1,6 +1,7 @@
-const { EmbedBuilder } = require('discord.js');
+import { EmbedBuilder } from "discord.js";
 
-module.exports = {
+
+export default {
     name: 'kick',
     description: {
         fr: 'Expulse un membre du serveur',
@@ -15,7 +16,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message
      * @param {string[]} args
      * 
@@ -29,7 +30,7 @@ module.exports = {
             return message.channel.send(`Je n\'ai pas les permissions nécessaires pour **kick** ${targetMember.user}.`);
         }
 
-        const reason = args.slice(1).join(' ') || 'Snoway kick';
+        const reason = args.slice(1).join(' ') || 'RinBot kick';
 
         if (!targetMember) {
             return message.channel.send(`> \`❌\` Erreur : Usage: \`kick @user @reason\``);

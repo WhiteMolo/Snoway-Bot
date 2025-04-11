@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'massadd',
     description: {
         fr: "Permet d'ajouter un rôle à la totalité du serveur",
@@ -12,15 +12,15 @@ module.exports = {
         en: { "massadd <rôle>": "Adds a role to the entire server" }
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
-     * @param {string[]} args 
-     * @returns 
+     *
+     * @param {RinBot} client
+     * @param {Discord.Message} message
+     * @param {string[]} args
+     * @returns
      */
     run: async (client, message, args) => {
         const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]) || message.guild.roles.cache.find((r) => r.name === args[0]);
-       
+
         if (!role) {
             return message.reply('Veuillez spécifier un rôle valide.');
         }
@@ -30,12 +30,12 @@ module.exports = {
         );
 
         const totalMembers = members.size;
-        const batchSize = Math.ceil(totalMembers * 0.05); 
+        const batchSize = Math.ceil(totalMembers * 0.05);
         let count = 0;
 
         message.channel.send(`[\`0%\`] Ajout du rôle : \`${role.name}\` à \`${totalMembers}\` membre${totalMembers !== 1 ? "s" : ""}`).then(async (msg) => {
             for (const [memberID, member] of members) {
-                await member.roles.add(role).catch(console.error); 
+                await member.roles.add(role).catch(console.error);
                 count++;
                 if (count % batchSize === 0 || count === totalMembers) {
                     const progress = Math.floor((count / totalMembers) * 100);
@@ -46,4 +46,4 @@ module.exports = {
             msg.edit('Le rôle a été ajouté à tous les membres avec succès.');
         }).catch(console.error);
     }
-}
+};

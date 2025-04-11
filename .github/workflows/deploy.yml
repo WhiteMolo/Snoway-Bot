@@ -1,4 +1,4 @@
-# GitHub Actions workflow for deploying the Snoway Discord Bot to a remote server
+# GitHub Actions workflow for deploying the RinBot Discord Bot to a remote server
 # This workflow is triggered on pushes to main branch or manually via workflow_dispatch
 
 name: Deploy Discord Bot
@@ -44,4 +44,4 @@ jobs:
             # Navigate to project directory, install dependencies, and restart/start the bot
             cd ${{ secrets.SSH_DEPLOYPATH }}
             npm install --production
-            pm2 restart snoway-bot || pm2 start src/index.js --name snoway-bot
+            pm2 restart RinBot-bot || pm2 start src/index.js --name RinBot-bot

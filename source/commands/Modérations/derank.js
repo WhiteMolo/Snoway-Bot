@@ -1,6 +1,6 @@
-const Discord = require('discord.js');
+import Discord from "discord.js";
 
-module.exports = {
+export default {
     name: 'derank',
     description: {
         fr: 'Retire tous les rôles d\'un membre',
@@ -16,7 +16,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message
      * @param {string[]} args
      * 
@@ -30,7 +30,7 @@ module.exports = {
         /**
          * @param {Discord.Guild} guild
          */
-        const reason = args.slice(1).join(' ') || 'Snoway Derank';
+        const reason = args.slice(1).join(' ') || 'RinBot Derank';
         if (targetMember.roles.highest.comparePositionTo(message.guild.members.me.roles.highest) >= 0) {
             return message.channel.send(`Je n\'ai pas les permissions nécessaires pour derank ${targetMember.user}.`);
           }

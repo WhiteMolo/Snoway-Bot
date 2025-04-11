@@ -1,10 +1,12 @@
-const backup = require('discord-backup');
-const fs = require('fs');
-const path = require('path');
-const Snoway = require('../../structures/client/index.js');
-const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, Embed, StringSelectMenuBuilder } = require('discord.js');
-const fsPromises = require('fs').promises;
-module.exports = {
+import * as backup from "discord-backup";
+import fs from "fs";
+import path from "path";
+import { RinBot } from "../../structures/client/index.js";
+import { ActionRowBuilder, ButtonBuilder, Embed, EmbedBuilder, Message, StringSelectMenuBuilder } from "discord.js";
+
+const fsPromises = fs.promises;
+
+export default {
   name: 'backup',
   aliases: ["bk", "bakp"],
   description: {
@@ -28,11 +30,11 @@ module.exports = {
     },
   },
   /**
-   * 
-   * @param {Snoway} client 
-   * @param {Snoway} message 
-   * @param {Snoway} args 
-   * @returns 
+   *
+   * @param {RinBot} client
+   * @param {Message} message
+   * @param {RinBot} args
+   * @returns
    */
   run: async (client, message, args) => {
     const module = args[0]
@@ -478,7 +480,7 @@ module.exports = {
       });
     }
   }
-}
+};
 
 
 function generateUniqueID() {

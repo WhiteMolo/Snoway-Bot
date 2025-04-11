@@ -1,7 +1,7 @@
-const Snoway = require("../../structures/client");
-const Discord = require('discord.js');
+import { RinBot } from "../../structures/client/index.js";
+import { EmbedBuilder, Message } from "discord.js";
 
-module.exports = {
+export default {
     name: 'mybot',
     aliases: ["mybots", "bot", "bots"],
     description: {
@@ -9,23 +9,23 @@ module.exports = {
         en: "Display your bots"
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
-     * @param {string[]} args 
-     * @returns 
+     *
+     * @param {RinBot} client
+     * @param {Message} message
+     * @param {string[]} args
+     * @returns
      */
     run: async (client, message, args) => {
         const response = (await client.functions.api.botget(message.author.id)).bots || []
         if (response.length === 0) {
             return message.reply({ content: await client.lang('mybot.aucun') });
         }
-        const embed = new Discord.EmbedBuilder()
+        const embed = new EmbedBuilder()
             .setTitle(await client.lang('mybot.embed.title'))
             .setColor(client.color)
             .setFooter(client.footer);
-            let description = ""
-          
+        let description = ""
+
         for (let index = 0; index < response.length; index++) {
             const bot = response[index];
 

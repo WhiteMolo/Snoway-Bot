@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: "ban",
     description: {
         fr: "Permet de bannir l'utilisateur mentionné",
@@ -12,11 +12,11 @@ module.exports = {
         en: {"ban <@user/ID> [reason]": "Allows you to ban a user from the server, a reason can be specified"}
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
+     *
+     * @param {RinBot} client
+     * @param {Discord.Message} message
      * @param {string[]} args
-     * @returns 
+     * @returns
      */
     run: async (client, message, args) => {
 
@@ -59,4 +59,4 @@ module.exports = {
             await client.db.push(`sanctions_${message.guild.id}`, sanction);
         });
     }
-}
+};

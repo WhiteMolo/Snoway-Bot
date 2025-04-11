@@ -1,8 +1,9 @@
-const { EmbedBuilder } = require('discord.js');
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index');
+import { EmbedBuilder } from "discord.js";
 
-module.exports = {
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: 'messagelog',
     aliases: ["messageslogs", "msglog", "logsmsg"],
     description: {
@@ -11,7 +12,7 @@ module.exports = {
     },
     /**
      *
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Discord.Message} message
      * @param {string[]} args
      */

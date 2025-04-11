@@ -1,10 +1,10 @@
-const { EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require('discord.js');
-const Snoway = require('../../structures/client/index');
+import { ActionRowBuilder, ButtonBuilder, EmbedBuilder, Guild } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'guildCreate',
     /**
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Guild} guild 
      */
     run: async (client, guild) => {

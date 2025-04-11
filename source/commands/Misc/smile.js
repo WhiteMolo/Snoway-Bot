@@ -1,6 +1,7 @@
-const Discord = require('discord.js')
-const Snoway = require('../../structures/client/index')
-module.exports = {
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
   name: 'smile',
   description: {
     fr: "Envoie une image d\'un personnage qui sourit",
@@ -11,10 +12,10 @@ module.exports = {
     en: {"smile <@user/id>": "Send a picture of a smiling character"},
   },
   /**
-   * 
-   * @param {Snoway} client 
-   * @param {Discord.Message} message 
-   * @param {string[]} args 
+   *
+   * @param {RinBot} client
+   * @param {Discord.Message} message
+   * @param {string[]} args
    */
   run: async (client, message, args) => {
     const targetUser = message.mentions.users.first() || client.users.cache.get(args[0]);
@@ -31,4 +32,4 @@ module.exports = {
     }
 
   }
-}
+};

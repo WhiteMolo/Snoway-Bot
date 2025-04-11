@@ -1,5 +1,6 @@
-const perm = require('./guild')
-class Model {
+import perm from "./guild.js";
+
+export class Model {
     constructor(client, database) {
         this.client = client;
         this.db = database;
@@ -10,5 +11,3 @@ class Model {
         perm(this.client, this.db);
     }
 }
-
-module.exports = Model;

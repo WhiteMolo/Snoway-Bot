@@ -1,6 +1,6 @@
-const Snoway = require("../../structures/client");
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'leave',
     description: {
         fr: "Permet de faire leave le bot d\'un discord ou il est !",
@@ -8,9 +8,9 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
-     * @param {Snoway} message 
-     * @param {Snoway} args 
+     * @param {RinBot} client 
+     * @param {RinBot} message 
+     * @param {RinBot} args 
      * @returns 
      */
     run: async (client, message, args) => {

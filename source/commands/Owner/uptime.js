@@ -1,7 +1,7 @@
-const Snoway = require('../../structures/client/index');
-const Discord = require('discord.js');
+import { RinBot } from "../../structures/client/index.js";
+import Discord from "discord.js";
 
-module.exports = {
+export default {
     name: 'uptime',
     description: {
         fr: "Affiche depuis quand le bot est connecté",
@@ -9,9 +9,9 @@ module.exports = {
     },
     /**
    * 
-   * @param {Snoway} client 
+   * @param {RinBot} client 
    * @param {Discord.Message} message 
-   * @param {Snoway} args 
+   * @param {RinBot} args 
    * @returns 
    */
     run: async (client, message, args) => {

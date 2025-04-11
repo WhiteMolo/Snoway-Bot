@@ -1,16 +1,18 @@
-const perm = require('./perms')
-const api = require('./manager')
-const bot = require('./bot')
-const fivem = require('./fivem')
-const config = require('./config')
-const discord = require('./discord')
-const emoji = require('./emoji')
-module.exports = {
+import { } from "./perms.js";
+import manager from "./manager.js";
+import bot from "./bot.js";
+import * as fivem from "./fivem.js";
+import config from "./config.js";
+import * as discord from "./discord.js";
+import emoji from "./emoji.js";
+import perm from "./perms.js";
+
+export default {
     perm,
-    api,
+    manager,
     fivem,
     bot,
     config,
     emoji,
     discord
-}
+};

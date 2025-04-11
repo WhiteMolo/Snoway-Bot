@@ -1,8 +1,8 @@
-const { EmbedBuilder } = require('discord.js');
-const Discord = require('discord.js')
-const Snoway = require('../../structures/client/index')
+import { EmbedBuilder } from "discord.js";
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'logs',
     description: {
         fr: "Permet d'afficher le statut des salons logs",
@@ -10,7 +10,7 @@ module.exports = {
     },
     /**
      *
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Discord.Message} message
      */
     run: async (client, message) => {

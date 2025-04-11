@@ -1,11 +1,11 @@
-const ms = require('ms');
-const Discord = require('discord.js');
+import ms from "../../structures/Utils/ms.js";
+import Discord from "discord.js";
 
-module.exports = {
+export default {
     name: 'ready',
     /**
      * 
-     * @param {import("../../structures/client")} client 
+     * @param {import("../../structures/client/index.js")} client
      */
     run: async (client) => {
         const invitesData = client.invites;

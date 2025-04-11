@@ -1,7 +1,8 @@
-const Snoway = require("../../structures/client");
-const Discord = require('discord.js');
-const ms = require('../../structures/Utils/ms'); 
-module.exports = {
+import { RinBot } from "../../structures/client/index.js";
+import Discord from "discord.js";
+import ms from "../../structures/Utils/ms.js";
+
+export default {
     name: 'soutien',
     description: {
         fr: 'Permet de donner automatiquement un rôle aux membres ayant un message dans leurs statuts',
@@ -9,7 +10,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message 
      * @param {string[]} args 
      * @returns 

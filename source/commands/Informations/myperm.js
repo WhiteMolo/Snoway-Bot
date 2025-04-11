@@ -1,14 +1,14 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import Discord from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'myperm',
     description: {
         en: "Check your own permissions for specified actions",
         fr: "Vérifiez vos propres autorisations sur le serveur"
     },
     /**
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message 
      * @param {Array} args 
      */

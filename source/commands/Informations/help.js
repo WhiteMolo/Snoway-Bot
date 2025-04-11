@@ -1,7 +1,8 @@
-const Discord = require('discord.js');
-const fs = require('fs');
-const Snoway = require('../../structures/client/index.js');
-module.exports = {
+import Discord from "discord.js";
+import fs from "fs";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: "help",
     description: {
         fr: "Affiche les commandes du bot",
@@ -15,11 +16,11 @@ module.exports = {
         }
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Discord.Message} message 
-     * @param {args[]} args 
-     * @returns 
+     *
+     * @param {RinBot} client
+     * @param {Discord.Message} message
+     * @param {args[]} args
+     * @returns
      */
     run: async (client, message, args) => {
         const lang = await client.db.get(`langue`)
@@ -138,7 +139,7 @@ module.exports = {
                         .addComponents(
                             new Discord.StringSelectMenuBuilder()
                                 .setCustomId('selectMenu')
-                                .setPlaceholder('Snoway')
+                                .setPlaceholder('RinBot')
                                 .addOptions(
                                     folderOrder.map(folder => ({
                                         label: folder,
@@ -247,7 +248,7 @@ module.exports = {
                         .addComponents(
                             new Discord.StringSelectMenuBuilder()
                                 .setCustomId('selectMenu')
-                                .setPlaceholder('Snoway')
+                                .setPlaceholder('RinBot')
                                 .addOptions(
                                     folderOrder.map(folder => ({
                                         label: folder,
@@ -293,15 +294,15 @@ module.exports = {
             if (module === 'button') {
                 const totalpag = cmddanslefichier.length;
                 let page = 0;
-            
+
                 if (args.length > 0 && !isNaN(args[0])) {
                     page = parseInt(args[0]) - 1;
                     if (page < 0) page = 0;
                     if (page >= totalpag) page = totalpag - 1;
                 }
-            
+
                 cmddanslefichier.sort((a, b) => folderOrder.indexOf(a) - folderOrder.indexOf(b));
-            
+
                 const generetapage = (pageIndex) => {
                     const fichiertasoeur = cmddanslefichier[pageIndex];
                     const cmdFiles = fs.readdirSync(`./source/commands/${fichiertasoeur}`).filter(file => file.endsWith('.js'));
@@ -321,7 +322,7 @@ module.exports = {
                                     usages = command.usage.fr;
                             }
                         }
-            
+
                         switch (lang) {
                             case "fr":
                                 descriptions = command.description.fr;
@@ -332,25 +333,25 @@ module.exports = {
                             default:
                                 descriptions = command.description.fr;
                         }
-            
+
                         const usage = usages || {
                             [command.name]: descriptions || "Error"
                         };
-            
+
                         let description = '';
                         for (const [key, value] of Object.entries(usage)) {
                             description += `\n\`${client.prefix}${key}\`\n${value}`;
                         }
-            
+
                         return description;
                     });
-            
+
                     const embed = new Discord.EmbedBuilder()
                         .setColor(client.color)
                         .setTitle((fileEmojis[fichiertasoeur] || '❌') + " " + fichiertasoeur)
                         .setFooter(client.footer)
                         .setDescription(`${aide}\n` + categoryCommands.join(''));
-            
+
                     const rows = new Discord.ActionRowBuilder()
                         .addComponents(
                             new Discord.ButtonBuilder()
@@ -369,15 +370,15 @@ module.exports = {
                                 .setDisabled(pageIndex === totalpag - 1)
                                 .setLabel(`>>>`),
                         );
-            
+
                     return { embeds: [embed], components: [rows] };
                 };
-            
+
                 const { embeds, components } = generetapage(page);
                 const helpMessage = await message.channel.send({ embeds, components });
-            
+
                 const collector = helpMessage.createMessageComponentCollector();
-            
+
                 collector.on('collect', async i => {
                     if (i.user.id !== message.author.id) {
                         return i.reply({
@@ -385,7 +386,7 @@ module.exports = {
                             flags: 64
                         });
                     }
-            
+
                     let newPage = page;
                     if (i.customId === 'suivant') {
                         newPage++;
@@ -394,13 +395,13 @@ module.exports = {
                     }
                     console.log(cmddanslefichier.indexOf(newPage))
                     const pageIndex = cmddanslefichier.indexOf(newPage);
-            
+
                     const { embeds, components } = generetapage(pageIndex);
                     await i.update({ embeds, components });
-                    await i.deferUpdate(); 
+                    await i.deferUpdate();
                 });
             }
-            
+
 
             if (module === "onepage") {
                 const formattedCategories = [];
@@ -410,8 +411,9 @@ module.exports = {
                     const catecmd = [];
 
                     for (const file of cmdfichier) {
-                        const command = require(`../${folder}/${file}`);
-                        catecmd.push(`${command.name}`);
+                        import(`../${folder}/${file}`).then((command) =>  {
+                            catecmd.push(`${command.name}`)
+                        });
                     }
 
                     formattedCategories.push(`**${fileEmojis[folder]}・${folder}**\n\`${catecmd.join('\`, \`') || await client.lang('help.nocmd')}\``);
@@ -421,7 +423,7 @@ module.exports = {
                 const text = helptext.replace("{prefix}", `${client.prefix}`)
                 const embed = new Discord.EmbedBuilder()
                     .setColor(client.color)
-                    .setAuthor({ name: "Snoway V3", url: client.user.avatarURL(), iconURL: client.user.avatarURL() })
+                    .setAuthor({ name: "RinBot V3", url: client.user.avatarURL(), iconURL: client.user.avatarURL() })
                     .setDescription(`${await client.lang("help.prefix")} \`${client.prefix}\`\n${await client.lang("help.cmd")} \`${client.commands.size}\`\n${text}\n\n` + formattedCategories.join('\n\n'))
                     .setFooter(client.footer);
 
@@ -485,4 +487,4 @@ module.exports = {
             message.channel.send({ embeds: [embed], components: [row] });
         }
     }
-}
+};

@@ -1,7 +1,8 @@
-const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, Message } = require('discord.js');
-const Snoway = require('../../structures/client/index.js');
+import { ActionRowBuilder, EmbedBuilder, Message, StringSelectMenuBuilder } from "discord.js";
 
-module.exports = {
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: 'sethelp',
     description: {
         fr: 'Configurer le type de help affiché',
@@ -9,7 +10,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client
      * @param {Message} message 
      * @param {string[]} args 
      */

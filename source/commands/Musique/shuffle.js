@@ -1,14 +1,15 @@
-const { useQueue } = require("discord-player");
-const { EmbedBuilder, Message } = require('discord.js');
-const Snoway = require('../../structures/client/index')
-module.exports = {
+import { useQueue } from "discord-player";
+import { EmbedBuilder, Message } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: "shuffle",
     description: {
         fr: "Mélangez la file d'attente actuelle !",
         en: "Shuffle the current queue!"
     },
     /**
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Message} message
      */
 
@@ -30,4 +31,4 @@ module.exports = {
             .setDescription("je viens de shuffle la queue !");
         return message.reply({ embeds: [embed] });
     }
-}
+};

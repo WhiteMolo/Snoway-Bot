@@ -1,14 +1,15 @@
-const Discord = require('discord.js');
-const Snoway = require('../../structures/client/index')
-module.exports = {
+import { Message, ActionRowBuilder, ButtonBuilder, EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: "captcha",
     description: {
         fr: "Configure le système de captcha",
         en: "Configure the captcha system"
     },
     /**
-     * @param {Snoway} client
-     * @param {Discord.Message} message
+     * @param {RinBot} client
+     * @param {Message} message
      */
     run: async (client, message) => {
         const emoji = {
@@ -42,7 +43,7 @@ module.exports = {
             const channel = client.channels.cache.get(db.channel) || null;
             const role = message.guild.roles.cache.get(db.role) || null;
 
-            const embed = new Discord.EmbedBuilder()
+            const embed = new EmbedBuilder()
                 .setColor(client.color)
                 .setTimestamp()
                 .addFields(
@@ -61,37 +62,37 @@ module.exports = {
                 .setFooter(client.footer);
 
 
-            const row = new Discord.ActionRowBuilder()
+            const row = new ActionRowBuilder()
                 .addComponents(
-                    new Discord.ButtonBuilder()
+                    new ButtonBuilder()
                         .setCustomId('type')
                         .setEmoji(emoji["type"])
                         .setStyle(2),
-                    new Discord.ButtonBuilder()
+                    new ButtonBuilder()
                         .setCustomId('temps')
                         .setEmoji(emoji["temps"])
                         .setStyle(2),
-                    new Discord.ButtonBuilder()
+                    new ButtonBuilder()
                         .setCustomId('age')
                         .setEmoji(emoji["age"])
                         .setStyle(2),
-                    new Discord.ButtonBuilder()
+                    new ButtonBuilder()
                         .setCustomId('channel')
                         .setEmoji(emoji["salon"])
                         .setStyle(2),
-                    new Discord.ButtonBuilder()
+                    new ButtonBuilder()
                         .setCustomId('user')
                         .setEmoji(emoji["role"])
                         .setStyle(2),
                 )
-            reply.edit({
+            await reply.edit({
                 embeds: [embed],
                 components: [row],
                 content: null
             });
         }
 
-        updateEmbed();
+        await updateEmbed();
 
         const collector = reply.createMessageComponentCollector();
 
@@ -105,7 +106,7 @@ module.exports = {
 
             if (i.customId === "retour") {
                 i.deferUpdate()
-                updateEmbed()
+                await updateEmbed()
             }
 
             if (i.customId === 'type') {
@@ -114,14 +115,14 @@ module.exports = {
                     ephemeral: true
                 });
             } else if (i.customId === "user") {
-                const embed = new Discord.EmbedBuilder()
+                const embed = new EmbedBuilder()
                     .setColor(client.color)
                     .setDescription("***Quel rôle souhaitez-vous assigner après la validation du captcha ?***")
                     .setFooter(client.footer);
 
-                const row = new Discord.ActionRowBuilder()
+                const row = new ActionRowBuilder()
                     .addComponents(
-                        new Discord.ButtonBuilder()
+                        new ButtonBuilder()
                             .setCustomId('retour')
                             .setEmoji(emoji['retour'])
                             .setStyle(4)
@@ -143,7 +144,7 @@ module.exports = {
                     if (role) {
                         db.role = role.id;
                         await client.db.set(`captcha_${message.guild.id}`, db);
-                        updateEmbed();
+                        await updateEmbed();
                     } else {
 
                         const channel = client.channels.cache.get(response.first().channelId);
@@ -153,14 +154,14 @@ module.exports = {
                     response.first().delete().catch(() => { });
                 }
             } else if (i.customId === "channel") {
-                const embed = new Discord.EmbedBuilder()
+                const embed = new EmbedBuilder()
                     .setColor(client.color)
                     .setDescription("***Quel salon souhaitez-vous utiliser pour le captcha ?***")
                     .setFooter(client.footer);
 
-                const row = new Discord.ActionRowBuilder()
+                const row = new ActionRowBuilder()
                     .addComponents(
-                        new Discord.ButtonBuilder()
+                        new ButtonBuilder()
                             .setCustomId('retour')
                             .setEmoji(emoji['retour'])
                             .setStyle(4)
@@ -182,11 +183,11 @@ module.exports = {
                     if (channel) {
                         db.channel = channel.id;
                         await client.db.set(`captcha_${message.guild.id}`, db);
-                        updateEmbed();
+                        await updateEmbed();
                     } else {
                         const channel = client.channels.cache.get(response.first().channelId);
                         const salon = await channel.send({ content: '***Le salon mentionné est invalide. Veuillez mentionner un salon valide.***' });
-                        updateEmbed()
+                        await updateEmbed()
                         setTimeout(() => {
                             salon.delete().catch(() => { })
                         }, 8000)
@@ -197,14 +198,14 @@ module.exports = {
                 }
 
             } else if (i.customId === "temps") {
-                const embed = new Discord.EmbedBuilder()
+                const embed = new EmbedBuilder()
                     .setColor(client.color)
                     .setDescription(`**Veuillez indiquer le temps qui sera disponible pour résoudre le captcha. (Min: 10s, Max: 3m)**\n\`Exemple: 2m ou 45s\``)
                     .setFooter(client.footer);
 
-                const row = new Discord.ActionRowBuilder()
+                const row = new ActionRowBuilder()
                     .addComponents(
-                        new Discord.ButtonBuilder()
+                        new ButtonBuilder()
                             .setCustomId('retour')
                             .setEmoji(emoji['retour'])
                             .setStyle(4)
@@ -225,27 +226,27 @@ module.exports = {
                     if (!isNaN(timeseconde) && timeseconde >= 10 && timeseconde <= 180) {
                         db.time = timeseconde
                         await client.db.set(`captcha_${message.guild.id}`, db)
-                        updateEmbed()
+                        await updateEmbed()
                         response.first().delete().catch(() => { })
                     } else {
                         const channel = client.channels.cache.get(response.first().channelId);
                         const time = await channel.send({ content: "***Le temps entré est invalide. Assurez-vous que c\'est entre 10 secondes et 3 minutes.***" })
                         response.first().delete().catch(() => { })
-                        updateEmbed()
+                        await updateEmbed()
                         setTimeout(() => {
                             time.delete().catch(() => { })
                         }, 8000)
                     }
                 }
             } else if (i.customId === "age") {
-                const embed = new Discord.EmbedBuilder()
+                const embed = new EmbedBuilder()
                     .setColor(client.color)
                     .setDescription(`**Veuillez indiquer l'âge minimum du compte sous peine d'être exclu. (Min: 1s)**\n\`Exemple: 2y, 4M, 12d, 40h, 12m, 10s\``)
                     .setFooter(client.footer);
 
-                const row = new Discord.ActionRowBuilder()
+                const row = new ActionRowBuilder()
                     .addComponents(
-                        new Discord.ButtonBuilder()
+                        new ButtonBuilder()
                             .setCustomId('retour')
                             .setEmoji(emoji['retour'])
                             .setStyle(4)
@@ -267,11 +268,11 @@ module.exports = {
                     if (!isNaN(convertAge) && convertAge >= 1) {
                         db.age = convertAge
                         await client.db.set(`captcha_${message.guild.id}`, db)
-                        updateEmbed()
+                        await updateEmbed()
                     } else {
                         const channel = client.channels.cache.get(response.first().channelId);
                         const age = await channel.send({ content: "***L'âge entré est invalide. Assurez-vous que c'est supérieur à 1 seconde.***" });
-                        updateEmbed()
+                        await updateEmbed()
                         setTimeout(() => {
                             age.delete().catch(() => { })
                         }, 8000)

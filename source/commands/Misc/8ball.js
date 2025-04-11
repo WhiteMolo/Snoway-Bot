@@ -1,15 +1,16 @@
-const Discord = require('discord.js')
-module.exports = {
+import Discord from "discord.js";
+
+export default {
     name: '8ball',
     description: {
       fr: "Pose une question au bot",
       en: "Ask the bot a question"
     },
     /**
-     * 
-     * @param {Snoway} client 
-     * @param {Message} message 
-     * @param {string[]} args 
+     *
+     * @param {RinBot} client
+     * @param {Message} message
+     * @param {string[]} args
      */
     run: async (client, message, args) => {
         const responses = [
@@ -35,9 +36,9 @@ module.exports = {
           if (!question) {
             return message.reply("> Demande moi quelle que chose");
           }
-      
+
           const randomIndex = Math.floor(Math.random() * responses.length);
           const response = responses[randomIndex];
           message.reply(`${response}`);
     }
-}
+};

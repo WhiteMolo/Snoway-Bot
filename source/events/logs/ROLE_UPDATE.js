@@ -1,7 +1,14 @@
-const { EmbedBuilder } = require('discord.js');
+import { EmbedBuilder, Role } from "discord.js";
 
-module.exports = {
+
+export default {
     name: 'roleUpdate',
+    /**
+     * @param {RinBot} client
+     * @param {Role} oldRole
+     * @param {Role} newRole
+     * @returns {Promise<void>}
+     */
     run: async (client, oldRole, newRole) => {
         const color = await client.db.get(`color_${oldRole.guild.id}`) || client.config.color;
         const logs = await client.db.get(`logs_${oldRole.guild.id}`) || [];

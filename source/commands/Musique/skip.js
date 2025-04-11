@@ -1,14 +1,15 @@
-const { useQueue } = require("discord-player");
-const { EmbedBuilder, Message } = require('discord.js');
-const Snoway = require('../../structures/client/index')
-module.exports = {
+import { useQueue } from "discord-player";
+import { EmbedBuilder, Message } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
+
+export default {
     name: "skip",
     description: {
         fr: "Passe la musique actuelle",
         en: "Pass the current music",
     },
     /**
-     * @param {Snoway} client
+     * @param {RinBot} client
      * @param {Message} message
      */
 
@@ -65,4 +66,4 @@ module.exports = {
             .setDescription("La musique a bien été passée je vous laisse profiter de la musique !");
         return message.reply({ embeds: [embed] });
     }
-}
+};

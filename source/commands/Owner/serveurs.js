@@ -1,8 +1,7 @@
-const Discord = require('discord.js');
-const { ActionRowBuilder, ButtonBuilder, EmbedBuilder } = require("discord.js")
-const Snoway = require('../../structures/client/index');
+import Discord, { ActionRowBuilder, ButtonBuilder, EmbedBuilder } from "discord.js";
+import { RinBot } from "../../structures/client/index.js";
 
-module.exports = {
+export default {
     name: 'servers',
     aliases: ['server', 'servers'],
     description: {
@@ -11,7 +10,7 @@ module.exports = {
     },
     /**
      * 
-     * @param {Snoway} client 
+     * @param {RinBot} client 
      * @param {Discord.Message} message
      * 
      **/
